@@ -1,16 +1,16 @@
-import React, { useState } from "react";
-import bcrypt from "bcryptjs";
-import { supabase } from "../supabaseClient";
-import "./PasswordChange.css";
+import React, { useState } from 'react';
+import bcrypt from 'bcryptjs';
+import { supabase } from '../supabaseClient';
+import './PasswordChange.css';
 
 function PasswordChange() {
   const [formData, setFormData] = useState({
-    currentPassword: "",
-    newPassword: "",
-    confirmPassword: "",
+    currentPassword: '',
+    newPassword: '',
+    confirmPassword: '',
   });
-  const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (e) => {
@@ -19,55 +19,55 @@ function PasswordChange() {
       ...formData,
       [name]: value,
     });
-    setError("");
-    setSuccess("");
+    setError('');
+    setSuccess('');
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError("");
-    setSuccess("");
+    setError('');
+    setSuccess('');
     setIsLoading(true);
 
     try {
       // 1. 입력값 검증
       if (!formData.currentPassword || !formData.newPassword || !formData.confirmPassword) {
-        setError("모든 항목을 입력해주세요.");
+        setError('모든 항목을 입력해주세요.');
         setIsLoading(false);
         return;
       }
 
       // 2. 새 비밀번호 일치 확인
       if (formData.newPassword !== formData.confirmPassword) {
-        setError("새 비밀번호가 일치하지 않습니다. 다시 확인해주세요.");
+        setError('새 비밀번호가 일치하지 않습니다. 다시 확인해주세요.');
         setIsLoading(false);
         return;
       }
 
       // 3. 비밀번호 강도 검증
       if (formData.newPassword.length < 6) {
-        setError("새 비밀번호는 최소 6자 이상이어야 합니다.");
+        setError('새 비밀번호는 최소 6자 이상이어야 합니다.');
         setIsLoading(false);
         return;
       }
 
       // 4. 현재 사용자 확인
-      const username = sessionStorage.getItem("adminUser");
+      const username = sessionStorage.getItem('adminUser');
       if (!username) {
-        setError("로그인 세션이 만료되었습니다.");
+        setError('로그인 세션이 만료되었습니다.');
         setIsLoading(false);
         return;
       }
 
       // 5. Supabase에서 현재 관리자 정보 가져오기
       const { data: adminData, error: fetchError } = await supabase
-        .from("admin_users")
-        .select("password_hash")
-        .eq("username", username)
+        .from('admin_users')
+        .select('password_hash')
+        .eq('username', username)
         .single();
 
       if (fetchError || !adminData) {
-        setError("관리자 정보를 찾을 수 없습니다.");
+        setError('관리자 정보를 찾을 수 없습니다.');
         setIsLoading(false);
         return;
       }
@@ -79,7 +79,7 @@ function PasswordChange() {
       );
 
       if (!isCurrentPasswordValid) {
-        setError("현재 비밀번호가 올바르지 않습니다.");
+        setError('현재 비밀번호가 올바르지 않습니다.');
         setIsLoading(false);
         return;
       }
@@ -89,34 +89,34 @@ function PasswordChange() {
 
       // 8. Supabase에 새 비밀번호 저장
       const { error: updateError } = await supabase
-        .from("admin_users")
+        .from('admin_users')
         .update({ password_hash: newPasswordHash })
-        .eq("username", username);
+        .eq('username', username);
 
       if (updateError) {
-        setError("비밀번호 변경에 실패했습니다: " + updateError.message);
+        setError('비밀번호 변경에 실패했습니다: ' + updateError.message);
         setIsLoading(false);
         return;
       }
 
       // 9. 성공 메시지
-      setSuccess("✅ 비밀번호가 성공적으로 변경되었습니다!");
+      setSuccess('✅ 비밀번호가 성공적으로 변경되었습니다!');
       setFormData({
-        currentPassword: "",
-        newPassword: "",
-        confirmPassword: "",
+        currentPassword: '',
+        newPassword: '',
+        confirmPassword: '',
       });
 
       // 10. 3초 후 세션 초기화 및 로그아웃 (보안을 위해)
       setTimeout(() => {
-        alert("보안을 위해 다시 로그인해주세요.");
-        sessionStorage.removeItem("adminToken");
-        sessionStorage.removeItem("adminUser");
+        alert('보안을 위해 다시 로그인해주세요.');
+        sessionStorage.removeItem('adminToken');
+        sessionStorage.removeItem('adminUser');
         window.location.reload();
       }, 3000);
     } catch (error) {
-      console.error("비밀번호 변경 오류:", error);
-      setError("오류가 발생했습니다: " + error.message);
+      console.error('비밀번호 변경 오류:', error);
+      setError('오류가 발생했습니다: ' + error.message);
     } finally {
       setIsLoading(false);
     }
@@ -174,7 +174,7 @@ function PasswordChange() {
           {success && <div className="success-message">{success}</div>}
 
           <button type="submit" className="btn-change" disabled={isLoading}>
-            {isLoading ? "변경 중..." : "비밀번호 변경"}
+            {isLoading ? '변경 중...' : '비밀번호 변경'}
           </button>
         </form>
 

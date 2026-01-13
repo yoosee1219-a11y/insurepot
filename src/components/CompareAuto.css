@@ -269,7 +269,7 @@
 }
 
 .specialty-list li::before {
-  content: "✓";
+  content: '✓';
   position: absolute;
   left: 0;
   color: #10b981;
@@ -757,7 +757,7 @@
 }
 
 .cta-banner::before {
-  content: "🚗";
+  content: '🚗';
   position: absolute;
   right: 10%;
   bottom: 20%;

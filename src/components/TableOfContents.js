@@ -3,12 +3,12 @@
  * 글 내용의 제목들을 목차로 표시하고 클릭시 해당 섹션으로 이동
  */
 
-import React, { useState, useEffect } from "react";
-import { scrollToSection } from "../utils/contentParser";
-import "./TableOfContents.css";
+import React, { useState, useEffect } from 'react';
+import { scrollToSection } from '../utils/contentParser';
+import './TableOfContents.css';
 
 function TableOfContents({ toc }) {
-  const [activeId, setActiveId] = useState("");
+  const [activeId, setActiveId] = useState('');
 
   // 스크롤 위치에 따라 활성 항목 업데이트
   useEffect(() => {
@@ -31,8 +31,8 @@ function TableOfContents({ toc }) {
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, [toc]);
 
   const handleClick = (e, id) => {
@@ -66,9 +66,7 @@ function TableOfContents({ toc }) {
           <a
             key={item.id}
             href={`#${item.id}`}
-            className={`toc-item toc-level-${item.level} ${
-              activeId === item.id ? "active" : ""
-            }`}
+            className={`toc-item toc-level-${item.level} ${activeId === item.id ? 'active' : ''}`}
             onClick={(e) => handleClick(e, item.id)}
           >
             {item.text}

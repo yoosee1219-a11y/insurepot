@@ -53,45 +53,37 @@ const isValid = await bcrypt.compare(password, hashedPassword);
 ##### 구현된 검증 함수
 
 1. **sanitizeHtml()** - XSS 방어
-
    - HTML 태그 제거/이스케이프
    - 위험한 스크립트 차단
 
 2. **isSqlSafe()** - SQL Injection 방어
-
    - 위험한 SQL 키워드 감지
    - 특수문자 필터링
 
 3. **validateName()** - 이름 검증
-
    - 2~20자 제한
    - 한글, 영문, 숫자만 허용
    - XSS 체크
 
 4. **validatePassword()** - 비밀번호 검증
-
    - 4~50자 제한
    - 강도 측정 (약함/보통/강함)
    - 관리자용 강화 옵션
 
 5. **validateCommentContent()** - 댓글 내용 검증
-
    - 2~500자 제한
    - SQL Injection 체크
    - 스팸 방지 (연속 문자 제한)
 
 6. **validateEmail()** - 이메일 검증
-
    - 정규식 검증
    - 100자 제한
 
 7. **validatePhone()** - 전화번호 검증
-
    - 숫자와 하이픈만 허용
    - 9~11자 제한
 
 8. **validateUsername()** - 관리자 아이디 검증
-
    - 4~20자 제한
    - 영문, 숫자, 언더스코어만 허용
 
@@ -140,17 +132,14 @@ if (!nameValidation.valid) {
 ##### 주요 기능
 
 1. **checkRateLimit(action)** - 제한 확인
-
    - 브라우저 지문(fingerprint) 기반 식별
    - 시도 횟수 추적
    - 차단 시간 계산
 
 2. **resetRateLimit(action)** - 제한 초기화
-
    - 로그인 성공 시 사용
 
 3. **cleanupRateLimitStore()** - 메모리 정리
-
    - 오래된 기록 자동 삭제
    - 1시간마다 실행
 
@@ -160,7 +149,7 @@ if (!nameValidation.valid) {
 
 ```javascript
 // 1. Rate Limit 체크
-const rateLimitResult = checkRateLimit("LOGIN");
+const rateLimitResult = checkRateLimit('LOGIN');
 if (!rateLimitResult.allowed) {
   alert(rateLimitResult.error);
   // "너무 많은 시도가 있었습니다. 30분 후에 다시 시도해주세요."
@@ -172,7 +161,7 @@ const result = await authService.login(username, password);
 
 // 3. 성공 시 초기화
 if (result.success) {
-  resetRateLimit("LOGIN");
+  resetRateLimit('LOGIN');
 }
 ```
 
@@ -253,7 +242,6 @@ const loginToken = btoa(JSON.stringify(tokenData));
 1. **src/utils/validator.js** (385줄)
    - 모든 입력값 검증 로직
 2. **src/utils/rateLimiter.js** (178줄)
-
    - Rate Limiting 시스템
 
 3. **SECURITY-IMPROVEMENTS.md** (이 문서)
@@ -262,16 +250,13 @@ const loginToken = btoa(JSON.stringify(tokenData));
 ### 수정된 파일
 
 1. **src/utils/index.js**
-
    - validator, rateLimiter export 추가
 
 2. **src/hooks/useComments.js**
-
    - 댓글 작성/삭제 시 입력값 검증 추가
    - Rate Limiting 적용
 
 3. **src/services/authService.js**
-
    - 로그인 시 입력값 검증 추가
    - Rate Limiting 적용
    - 강화된 토큰 생성
@@ -287,7 +272,7 @@ const loginToken = btoa(JSON.stringify(tokenData));
 ### 1. 입력값 검증 사용하기
 
 ```javascript
-import { validateName, validatePassword, validateEmail } from "../utils";
+import { validateName, validatePassword, validateEmail } from '../utils';
 
 // 이름 검증
 const nameResult = validateName(userName);
@@ -309,10 +294,10 @@ console.log(`비밀번호 강도: ${pwResult.strength}`); // 약함/보통/강�
 ### 2. Rate Limiting 사용하기
 
 ```javascript
-import { checkRateLimit, resetRateLimit } from "../utils";
+import { checkRateLimit, resetRateLimit } from '../utils';
 
 // API 호출 전 체크
-const rateLimitResult = checkRateLimit("API");
+const rateLimitResult = checkRateLimit('API');
 if (!rateLimitResult.allowed) {
   alert(rateLimitResult.error);
   return;
@@ -323,7 +308,7 @@ const result = await apiCall();
 
 // 성공 시 초기화 (선택적)
 if (result.success) {
-  resetRateLimit("API");
+  resetRateLimit('API');
 }
 ```
 
@@ -343,7 +328,7 @@ const RATE_LIMITS = {
 };
 
 // 사용
-checkRateLimit("NEW_ACTION");
+checkRateLimit('NEW_ACTION');
 ```
 
 ---
@@ -409,10 +394,10 @@ checkRateLimit("NEW_ACTION");
 ### Rate Limit 상태 확인
 
 ```javascript
-import { getRateLimitInfo } from "../utils";
+import { getRateLimitInfo } from '../utils';
 
 // 현재 상태 조회
-const info = getRateLimitInfo("LOGIN");
+const info = getRateLimitInfo('LOGIN');
 console.log(info);
 /*
 {
@@ -431,15 +416,15 @@ console.log(info);
 ```javascript
 // 보안 이벤트 로그 저장 예시
 const securityLog = {
-  event: "RATE_LIMIT_EXCEEDED",
-  action: "LOGIN",
+  event: 'RATE_LIMIT_EXCEEDED',
+  action: 'LOGIN',
   timestamp: new Date().toISOString(),
-  fingerprint: "...",
+  fingerprint: '...',
   metadata: { attempts: 6 },
 };
 
 // Supabase에 저장
-await supabase.from("security_logs").insert([securityLog]);
+await supabase.from('security_logs').insert([securityLog]);
 ```
 
 ---

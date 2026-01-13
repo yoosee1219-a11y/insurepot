@@ -1,24 +1,24 @@
-import React, { useState } from "react";
-import "./Login.css";
-import { authService } from "../services";
+import React, { useState } from 'react';
+import './Login.css';
+import { authService } from '../services';
 
 function Login({ onLoginSuccess }) {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError("");
+    setError('');
     setIsLoading(true);
 
     const result = await authService.login(username, password);
 
     if (result.success) {
       // 토큰과 사용자 정보 저장
-      sessionStorage.setItem("adminToken", result.data.token);
-      sessionStorage.setItem("adminUser", result.data.username);
+      sessionStorage.setItem('adminToken', result.data.token);
+      sessionStorage.setItem('adminUser', result.data.username);
 
       onLoginSuccess();
     } else {
@@ -32,7 +32,7 @@ function Login({ onLoginSuccess }) {
     <div className="login-container">
       <div className="login-box">
         <div className="login-header">
-          <h1>🏦 보험이지</h1>
+          <h1>🛡️ 보이지</h1>
           <p>관리자 로그인</p>
         </div>
 
@@ -66,7 +66,7 @@ function Login({ onLoginSuccess }) {
           {error && <div className="error-message">⚠️ {error}</div>}
 
           <button type="submit" className="login-button" disabled={isLoading}>
-            {isLoading ? "로그인 중..." : "로그인"}
+            {isLoading ? '로그인 중...' : '로그인'}
           </button>
         </form>
 

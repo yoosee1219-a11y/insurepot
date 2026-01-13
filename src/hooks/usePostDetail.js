@@ -3,9 +3,9 @@
  * 게시글, 카테고리, 최근 게시글, 인접 게시글을 관리
  */
 
-import { useState, useEffect, useCallback } from "react";
-import { useNavigate } from "react-router-dom";
-import { postService } from "../services";
+import { useState, useEffect, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { postService } from '../services';
 
 export function usePostDetail(postId) {
   const navigate = useNavigate();
@@ -25,16 +25,14 @@ export function usePostDetail(postId) {
       setPost(result.data);
 
       // 인접 게시글 가져오기
-      const adjacentResult = await postService.fetchAdjacentPosts(
-        result.data.created_at
-      );
+      const adjacentResult = await postService.fetchAdjacentPosts(result.data.created_at);
       if (adjacentResult.success) {
         setPrevPost(adjacentResult.data.prevPost);
         setNextPost(adjacentResult.data.nextPost);
       }
     } else {
-      console.error("게시글 로딩 오류:", result.error);
-      navigate("/");
+      console.error('게시글 로딩 오류:', result.error);
+      navigate('/');
     }
 
     setLoading(false);
@@ -47,7 +45,7 @@ export function usePostDetail(postId) {
     if (result.success) {
       setCategories(result.data);
     } else {
-      console.error("카테고리 로딩 오류:", result.error);
+      console.error('카테고리 로딩 오류:', result.error);
     }
   }, []);
 
@@ -58,7 +56,7 @@ export function usePostDetail(postId) {
     if (result.success) {
       setRecentPosts(result.data);
     } else {
-      console.error("최근 게시글 로딩 오류:", result.error);
+      console.error('최근 게시글 로딩 오류:', result.error);
     }
   }, []);
 
@@ -67,7 +65,7 @@ export function usePostDetail(postId) {
     const result = await postService.incrementViewCount(postId);
 
     if (!result.success) {
-      console.error("조회수 증가 오류:", result.error);
+      console.error('조회수 증가 오류:', result.error);
     }
   }, [postId]);
 

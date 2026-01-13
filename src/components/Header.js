@@ -1,30 +1,30 @@
-import React, { useState, useCallback } from "react";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import React, { useState, useCallback } from 'react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 function Header() {
   const navigate = useNavigate();
   const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState('');
 
   const scrollToSection = useCallback(
     (sectionId) => {
       setMenuOpen(false); // 메뉴 닫기
       // 메인 페이지가 아니면 먼저 메인 페이지로 이동
-      if (location.pathname !== "/") {
-        navigate("/");
+      if (location.pathname !== '/') {
+        navigate('/');
         // 페이지 이동 후 스크롤
         setTimeout(() => {
           const element = document.querySelector(sectionId);
           if (element) {
-            element.scrollIntoView({ behavior: "smooth" });
+            element.scrollIntoView({ behavior: 'smooth' });
           }
         }, 100);
       } else {
         // 이미 메인 페이지면 바로 스크롤
         const element = document.querySelector(sectionId);
         if (element) {
-          element.scrollIntoView({ behavior: "smooth" });
+          element.scrollIntoView({ behavior: 'smooth' });
         }
       }
     },
@@ -37,7 +37,7 @@ function Header() {
       e.preventDefault();
       if (searchQuery.trim()) {
         navigate(`/posts?search=${encodeURIComponent(searchQuery.trim())}`);
-        setSearchQuery("");
+        setSearchQuery('');
         setMenuOpen(false);
       }
     },
@@ -46,7 +46,7 @@ function Header() {
 
   const handleSearchKeyPress = useCallback(
     (e) => {
-      if (e.key === "Enter") {
+      if (e.key === 'Enter') {
         handleSearch(e);
       }
     },
@@ -65,7 +65,7 @@ function Header() {
     <header>
       <nav>
         <Link to="/" className="logo">
-          🏦 보험이지
+          🛡️ 보이지
         </Link>
 
         {/* 검색창 */}
@@ -78,11 +78,7 @@ function Header() {
             onKeyPress={handleSearchKeyPress}
             className="search-input"
           />
-          <button
-            onClick={handleSearch}
-            className="search-button"
-            aria-label="검색"
-          >
+          <button onClick={handleSearch} className="search-button" aria-label="검색">
             🔍
           </button>
         </div>
@@ -94,13 +90,18 @@ function Header() {
           <span></span>
         </button>
 
-        <ul className={`nav-menu ${menuOpen ? "active" : ""}`}>
+        <ul className={`nav-menu ${menuOpen ? 'active' : ''}`}>
+          <li>
+            <Link to="/coupons" onClick={closeMenu} className="coupon-menu-item">
+              쿠폰혜택
+            </Link>
+          </li>
           <li>
             <a
               href="#info"
               onClick={(e) => {
                 e.preventDefault();
-                scrollToSection("#info");
+                scrollToSection('#info');
               }}
             >
               보험정보
@@ -111,7 +112,7 @@ function Header() {
               href="#compare"
               onClick={(e) => {
                 e.preventDefault();
-                scrollToSection("#compare");
+                scrollToSection('#compare');
               }}
             >
               보험비교
@@ -122,7 +123,7 @@ function Header() {
               href="#consult"
               onClick={(e) => {
                 e.preventDefault();
-                scrollToSection("#consult");
+                scrollToSection('#consult');
               }}
             >
               상담신청
@@ -138,7 +139,7 @@ function Header() {
               href="#quick-quote"
               onClick={(e) => {
                 e.preventDefault();
-                scrollToSection("#quick-quote");
+                scrollToSection('#quick-quote');
               }}
               className="cta-button"
             >
@@ -151,7 +152,7 @@ function Header() {
           href="#quick-quote"
           onClick={(e) => {
             e.preventDefault();
-            scrollToSection("#quick-quote");
+            scrollToSection('#quick-quote');
           }}
           className="cta-button desktop-cta"
         >

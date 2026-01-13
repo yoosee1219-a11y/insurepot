@@ -5,16 +5,16 @@
 
 // 보험 종류
 export const INSURANCE_TYPES = {
-  AUTO: "자동차보험",
-  HEALTH: "실손보험",
-  CANCER: "암보험",
-  FAMILY: "가족보험",
-  FIRE: "주택화재보험",
-  TRAVEL: "여행자보험",
-  CHILD: "어린이보험",
-  PET: "반려동물보험",
-  DRIVER: "운전자보험",
-  ETC: "기타",
+  AUTO: '자동차보험',
+  HEALTH: '실손보험',
+  CANCER: '암보험',
+  FAMILY: '가족보험',
+  FIRE: '주택화재보험',
+  TRAVEL: '여행자보험',
+  CHILD: '어린이보험',
+  PET: '반려동물보험',
+  DRIVER: '운전자보험',
+  ETC: '기타',
 };
 
 // 보험 종류 배열 (select 옵션용)
@@ -30,12 +30,12 @@ export const INSURANCE_TYPE_LIST = [
 
 // 게시글 카테고리
 export const POST_CATEGORIES = {
-  AUTO_GUIDE: "자동차보험 가이드",
-  HEALTH_INFO: "실손보험 정보",
-  CANCER_GUIDE: "암보험 가이드",
-  SAVE_TIP: "보험료 절약 팁",
-  CLAIM_GUIDE: "보험금 청구 안내",
-  FAQ: "FAQ",
+  AUTO_GUIDE: '자동차보험 가이드',
+  HEALTH_INFO: '실손보험 정보',
+  CANCER_GUIDE: '암보험 가이드',
+  SAVE_TIP: '보험료 절약 팁',
+  CLAIM_GUIDE: '보험금 청구 안내',
+  FAQ: 'FAQ',
 };
 
 // 게시글 카테고리 배열 (select 옵션용)

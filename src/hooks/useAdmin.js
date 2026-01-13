@@ -3,13 +3,9 @@
  * 게시글과 상담 문의 데이터를 관리
  */
 
-import { useState, useEffect, useCallback } from "react";
-import { postService, consultationService } from "../services";
-import {
-  POST_MESSAGES,
-  POST_FORM_DEFAULTS,
-  CONSULTATION_MESSAGES,
-} from "../constants";
+import { useState, useEffect, useCallback } from 'react';
+import { postService, consultationService } from '../services';
+import { POST_MESSAGES, POST_FORM_DEFAULTS, CONSULTATION_MESSAGES } from '../constants';
 
 export function useAdmin() {
   const [posts, setPosts] = useState([]);
@@ -51,7 +47,7 @@ export function useAdmin() {
     const { name, value, type, checked } = e.target;
     setFormData((prev) => ({
       ...prev,
-      [name]: type === "checkbox" ? checked : value,
+      [name]: type === 'checkbox' ? checked : value,
     }));
   }, []);
 
@@ -71,11 +67,7 @@ export function useAdmin() {
       }
 
       if (result.success) {
-        alert(
-          editingId
-            ? POST_MESSAGES.UPDATE_SUCCESS
-            : POST_MESSAGES.CREATE_SUCCESS
-        );
+        alert(editingId ? POST_MESSAGES.UPDATE_SUCCESS : POST_MESSAGES.CREATE_SUCCESS);
         setEditingId(null);
         setFormData(POST_FORM_DEFAULTS);
         fetchData();
@@ -96,7 +88,7 @@ export function useAdmin() {
       is_published: post.is_published,
     });
     // 폼으로 스크롤
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
   // 수정 취소

@@ -3,15 +3,11 @@
  * 상담 문의 CRUD 작업을 처리
  */
 
-import { supabase } from "../supabaseClient";
-import {
-  handleApiError,
-  createSuccessResult,
-  checkSupabaseResponse,
-} from "../utils/errorHandler";
-import { validateConsultationData } from "../utils/validator";
-import { checkRateLimit } from "../utils/rateLimiter";
-import { CONSULTATION_MESSAGES } from "../constants";
+import { supabase } from '../supabaseClient';
+import { handleApiError, createSuccessResult, checkSupabaseResponse } from '../utils/errorHandler';
+import { validateConsultationData } from '../utils/validator';
+import { checkRateLimit } from '../utils/rateLimiter';
+import { CONSULTATION_MESSAGES } from '../constants';
 
 export const consultationService = {
   /**
@@ -21,18 +17,15 @@ export const consultationService = {
   fetchAll: async () => {
     try {
       const response = await supabase
-        .from("consultations")
-        .select("*")
-        .order("created_at", { ascending: false });
+        .from('consultations')
+        .select('*')
+        .order('created_at', { ascending: false });
 
-      const data = checkSupabaseResponse(
-        response,
-        "상담 문의 조회에 실패했습니다"
-      );
+      const data = checkSupabaseResponse(response, '상담 문의 조회에 실패했습니다');
 
       return createSuccessResult(data || []);
     } catch (error) {
-      return handleApiError(error, "상담 문의 조회에 실패했습니다");
+      return handleApiError(error, '상담 문의 조회에 실패했습니다');
     }
   },
 
@@ -44,7 +37,7 @@ export const consultationService = {
   create: async (consultationData) => {
     try {
       // 1. Rate Limiting 체크
-      const rateLimitResult = checkRateLimit("CONSULTATION");
+      const rateLimitResult = checkRateLimit('CONSULTATION');
       if (!rateLimitResult.allowed) {
         return {
           success: false,
@@ -55,7 +48,7 @@ export const consultationService = {
       // 2. 입력값 검증
       const validation = validateConsultationData(consultationData);
       if (!validation.valid) {
-        const errorMessages = Object.values(validation.errors).join("\n");
+        const errorMessages = Object.values(validation.errors).join('\n');
         return {
           success: false,
           error: errorMessages,
@@ -72,7 +65,7 @@ export const consultationService = {
       };
 
       // 4. 상담 문의 저장
-      const response = await supabase.from("consultations").insert([cleanData]);
+      const response = await supabase.from('consultations').insert([cleanData]);
 
       checkSupabaseResponse(response, CONSULTATION_MESSAGES.CREATE_ERROR);
 
@@ -90,10 +83,7 @@ export const consultationService = {
    */
   updateStatus: async (id, status) => {
     try {
-      const response = await supabase
-        .from("consultations")
-        .update({ status })
-        .eq("id", id);
+      const response = await supabase.from('consultations').update({ status }).eq('id', id);
 
       checkSupabaseResponse(response, CONSULTATION_MESSAGES.UPDATE_ERROR);
 
@@ -110,16 +100,13 @@ export const consultationService = {
    */
   delete: async (id) => {
     try {
-      const response = await supabase
-        .from("consultations")
-        .delete()
-        .eq("id", id);
+      const response = await supabase.from('consultations').delete().eq('id', id);
 
-      checkSupabaseResponse(response, "상담 문의 삭제에 실패했습니다");
+      checkSupabaseResponse(response, '상담 문의 삭제에 실패했습니다');
 
       return createSuccessResult(null);
     } catch (error) {
-      return handleApiError(error, "상담 문의 삭제에 실패했습니다");
+      return handleApiError(error, '상담 문의 삭제에 실패했습니다');
     }
   },
 
@@ -131,15 +118,15 @@ export const consultationService = {
   countByStatus: async (status) => {
     try {
       const response = await supabase
-        .from("consultations")
-        .select("*", { count: "exact", head: true })
-        .eq("status", status);
+        .from('consultations')
+        .select('*', { count: 'exact', head: true })
+        .eq('status', status);
 
-      checkSupabaseResponse(response, "상담 문의 개수 조회에 실패했습니다");
+      checkSupabaseResponse(response, '상담 문의 개수 조회에 실패했습니다');
 
       return createSuccessResult(response.count || 0);
     } catch (error) {
-      return handleApiError(error, "상담 문의 개수 조회에 실패했습니다");
+      return handleApiError(error, '상담 문의 개수 조회에 실패했습니다');
     }
   },
 };

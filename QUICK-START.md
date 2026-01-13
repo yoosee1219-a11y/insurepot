@@ -7,12 +7,14 @@
 **중요:** 프로젝트를 실행하기 전에 꼭 해야 합니다!
 
 #### Windows PowerShell:
+
 ```powershell
 cd C:\Users\woosol\OneDrive\Desktop\insurepot-project
 notepad .env.local
 ```
 
 #### 아래 내용 복사 & 붙여넣기:
+
 ```env
 REACT_APP_SUPABASE_URL=https://your-project.supabase.co
 REACT_APP_SUPABASE_ANON_KEY=your-anon-key-here
@@ -59,6 +61,7 @@ npm start
 ```
 
 자동으로 브라우저가 열립니다!
+
 - **메인 페이지:** http://localhost:3000
 - **관리자:** http://localhost:3000/admin
 
@@ -67,12 +70,14 @@ npm start
 ## ✅ 동작 확인
 
 ### 메인 페이지 (http://localhost:3000)
+
 - [x] 페이지가 정상적으로 로딩됨
 - [x] 히어로 섹션 (보라색 배경)이 보임
 - [x] 보험 종류 카드들이 보임
 - [x] 하단 상담 신청 폼이 있음
 
 ### 관리자 페이지 (http://localhost:3000/admin)
+
 - [x] 사이드바가 보임
 - [x] 대시보드 통계가 표시됨
 - [x] 콘텐츠 관리 메뉴가 작동함
@@ -82,6 +87,7 @@ npm start
 ## 🧪 기능 테스트
 
 ### 1. 게시글 작성 테스트
+
 1. http://localhost:3000/admin 접속
 2. "콘텐츠 관리" 클릭
 3. 제목 입력: `테스트 게시글`
@@ -93,6 +99,7 @@ npm start
 9. 메인 페이지로 이동 → 게시글 확인
 
 ### 2. 상담 신청 테스트
+
 1. http://localhost:3000 접속
 2. 하단 상담 섹션으로 스크롤
 3. 정보 입력:
@@ -108,16 +115,19 @@ npm start
 ## 🐛 문제 해결
 
 ### "Failed to fetch" 오류
+
 → `.env.local` 파일 확인
 → Supabase URL과 KEY가 정확한지 확인
 → 개발 서버 재시작: `Ctrl+C` 후 `npm start`
 
 ### 게시글이 안 보임
+
 → Supabase 대시보드에서 `posts` 테이블 확인
 → `is_published`가 `true`인지 확인
 → SQL 스키마가 제대로 실행되었는지 확인
 
 ### "Module not found" 오류
+
 ```bash
 npm install
 npm start
@@ -154,7 +164,9 @@ insurepot-project/
 ## 🚀 다음 단계
 
 ### 로컬 개발이 잘 되면:
+
 1. **GitHub에 업로드**
+
    ```bash
    git init
    git add .

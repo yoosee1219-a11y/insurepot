@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import "./CompareDriver.css";
+import React, { useState } from 'react';
+import './CompareDriver.css';
 
 const CompareDriver = () => {
   const [selectedFilters, setSelectedFilters] = useState({
@@ -8,21 +8,21 @@ const CompareDriver = () => {
   });
 
   const coverageOptions = [
-    "교통사고처리지원금",
-    "벌금",
-    "변호사선임비용",
-    "형사합의금",
-    "방어비용",
-    "면허정지위로금",
+    '교통사고처리지원금',
+    '벌금',
+    '변호사선임비용',
+    '형사합의금',
+    '방어비용',
+    '면허정지위로금',
   ];
 
   const discountOptions = [
-    "무사고 할인",
-    "안전운전 할인",
-    "블랙박스 할인",
-    "온라인 가입",
-    "장기계약",
-    "우수운전자",
+    '무사고 할인',
+    '안전운전 할인',
+    '블랙박스 할인',
+    '온라인 가입',
+    '장기계약',
+    '우수운전자',
   ];
 
   const toggleFilter = (category, item) => {
@@ -37,71 +37,59 @@ const CompareDriver = () => {
   const insuranceData = [
     {
       id: 1,
-      company: "삼성화재",
-      logo: "🚘",
+      company: '삼성화재',
+      logo: '🚘',
       rating: 4.7,
       reviews: 4532,
       coverage: [
-        { name: "벌금", amount: "최대 2천만원" },
-        { name: "변호사비용", amount: "최대 3천만원" },
-        { name: "형사합의금", amount: "최대 3천만원" },
-        { name: "교통사고처리지원금", amount: "5천만원" },
-        { name: "면허정지위로금", amount: "100만원" },
+        { name: '벌금', amount: '최대 2천만원' },
+        { name: '변호사비용', amount: '최대 3천만원' },
+        { name: '형사합의금', amount: '최대 3천만원' },
+        { name: '교통사고처리지원금', amount: '5천만원' },
+        { name: '면허정지위로금', amount: '100만원' },
       ],
-      specialties: [
-        "24시간 사고 상담 서비스",
-        "전문 변호사 즉시 연결",
-        "신속한 사고처리 지원",
-      ],
-      discounts: ["무사고 할인 15%", "안전운전 할인 12%", "블랙박스 할인 10%"],
-      color: "#3B82F6",
+      specialties: ['24시간 사고 상담 서비스', '전문 변호사 즉시 연결', '신속한 사고처리 지원'],
+      discounts: ['무사고 할인 15%', '안전운전 할인 12%', '블랙박스 할인 10%'],
+      color: '#3B82F6',
     },
     {
       id: 2,
-      company: "현대해상",
-      logo: "🛡️",
+      company: '현대해상',
+      logo: '🛡️',
       rating: 4.6,
       reviews: 4123,
       coverage: [
-        { name: "벌금", amount: "최대 2천만원" },
-        { name: "변호사비용", amount: "최대 3천만원" },
-        { name: "형사합의금", amount: "최대 3천만원" },
-        { name: "교통사고처리지원금", amount: "5천만원" },
-        { name: "방어비용", amount: "최대 2천만원" },
+        { name: '벌금', amount: '최대 2천만원' },
+        { name: '변호사비용', amount: '최대 3천만원' },
+        { name: '형사합의금', amount: '최대 3천만원' },
+        { name: '교통사고처리지원금', amount: '5천만원' },
+        { name: '방어비용', amount: '최대 2천만원' },
       ],
-      specialties: [
-        "AI 사고처리 시스템",
-        "법률 전문가 무료 상담",
-        "사고처리 원스톱 서비스",
-      ],
-      discounts: ["온라인 가입 10%", "장기계약 12%", "우수운전자 15%"],
-      color: "#059669",
+      specialties: ['AI 사고처리 시스템', '법률 전문가 무료 상담', '사고처리 원스톱 서비스'],
+      discounts: ['온라인 가입 10%', '장기계약 12%', '우수운전자 15%'],
+      color: '#059669',
     },
     {
       id: 3,
-      company: "DB손해보험",
-      logo: "⚡",
+      company: 'DB손해보험',
+      logo: '⚡',
       rating: 4.5,
       reviews: 3897,
       coverage: [
-        { name: "벌금", amount: "최대 2천만원" },
-        { name: "변호사비용", amount: "최대 3천만원" },
-        { name: "형사합의금", amount: "최대 3천만원" },
-        { name: "교통사고처리지원금", amount: "5천만원" },
-        { name: "통합 보장", amount: "최대 1억원" },
+        { name: '벌금', amount: '최대 2천만원' },
+        { name: '변호사비용', amount: '최대 3천만원' },
+        { name: '형사합의금', amount: '최대 3천만원' },
+        { name: '교통사고처리지원금', amount: '5천만원' },
+        { name: '통합 보장', amount: '최대 1억원' },
       ],
-      specialties: [
-        "전문 변호사 네트워크",
-        "사고 대응 매뉴얼 제공",
-        "빠른 보험금 지급",
-      ],
-      discounts: ["무사고 할인 15%", "블랙박스 할인 10%", "온라인 가입 8%"],
-      color: "#DC2626",
+      specialties: ['전문 변호사 네트워크', '사고 대응 매뉴얼 제공', '빠른 보험금 지급'],
+      discounts: ['무사고 할인 15%', '블랙박스 할인 10%', '온라인 가입 8%'],
+      color: '#DC2626',
     },
   ];
 
   const scrollToConsultation = () => {
-    window.location.href = "/#consultation";
+    window.location.href = '/#consultation';
   };
 
   return (
@@ -110,10 +98,7 @@ const CompareDriver = () => {
       <div className="compare-hero">
         <div className="compare-hero-content">
           <h1>🚘 운전자보험 한눈에 비교하기</h1>
-          <p>
-            운전자를 보호하는 운전자보험, 주요 보험사를 비교하고 안전한 운전을
-            시작하세요
-          </p>
+          <p>운전자를 보호하는 운전자보험, 주요 보험사를 비교하고 안전한 운전을 시작하세요</p>
         </div>
       </div>
 
@@ -127,9 +112,9 @@ const CompareDriver = () => {
                 <button
                   key={option}
                   className={`filter-chip ${
-                    selectedFilters.coverage.includes(option) ? "active" : ""
+                    selectedFilters.coverage.includes(option) ? 'active' : ''
                   }`}
-                  onClick={() => toggleFilter("coverage", option)}
+                  onClick={() => toggleFilter('coverage', option)}
                 >
                   {option}
                 </button>
@@ -144,9 +129,9 @@ const CompareDriver = () => {
                 <button
                   key={option}
                   className={`filter-chip ${
-                    selectedFilters.discounts.includes(option) ? "active" : ""
+                    selectedFilters.discounts.includes(option) ? 'active' : ''
                   }`}
-                  onClick={() => toggleFilter("discounts", option)}
+                  onClick={() => toggleFilter('discounts', option)}
                 >
                   {option}
                 </button>
@@ -159,18 +144,13 @@ const CompareDriver = () => {
         <div className="comparison-grid">
           {insuranceData.map((insurance) => (
             <div key={insurance.id} className="insurance-card">
-              <div
-                className="card-header"
-                style={{ borderTopColor: insurance.color }}
-              >
+              <div className="card-header" style={{ borderTopColor: insurance.color }}>
                 <div className="company-info">
                   <span className="company-logo">{insurance.logo}</span>
                   <h2>{insurance.company}</h2>
                 </div>
                 <div className="rating">
-                  <span className="stars">
-                    {"⭐".repeat(Math.floor(insurance.rating))}
-                  </span>
+                  <span className="stars">{'⭐'.repeat(Math.floor(insurance.rating))}</span>
                   <span className="rating-text">
                     {insurance.rating} ({insurance.reviews.toLocaleString()})
                   </span>

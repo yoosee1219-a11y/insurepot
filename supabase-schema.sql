@@ -111,5 +111,15 @@ $$ language 'plpgsql';
 CREATE TRIGGER update_posts_updated_at BEFORE UPDATE ON posts
 FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
 
+-- 8. 조회수 증가 함수
+CREATE OR REPLACE FUNCTION increment_view_count(post_id UUID)
+RETURNS void AS $$
+BEGIN
+    UPDATE posts 
+    SET view_count = view_count + 1 
+    WHERE id = post_id AND is_published = true;
+END;
+$$ LANGUAGE plpgsql;
+
 -- 완료!
 -- 이제 Supabase 대시보드에서 테이블을 확인하실 수 있습니다.

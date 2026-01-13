@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import "./ComparePet.css";
+import React, { useState } from 'react';
+import './ComparePet.css';
 
 const ComparePet = () => {
   const [selectedFilters, setSelectedFilters] = useState({
@@ -7,22 +7,15 @@ const ComparePet = () => {
     discounts: [],
   });
 
-  const coverageOptions = [
-    "질병 진료비",
-    "수술비",
-    "배상책임",
-    "장례비",
-    "예방접종",
-    "건강검진",
-  ];
+  const coverageOptions = ['질병 진료비', '수술비', '배상책임', '장례비', '예방접종', '건강검진'];
 
   const discountOptions = [
-    "중성화 완료",
-    "예방접종 완료",
-    "마이크로칩 등록",
-    "온라인 가입",
-    "다견 할인",
-    "장기계약",
+    '중성화 완료',
+    '예방접종 완료',
+    '마이크로칩 등록',
+    '온라인 가입',
+    '다견 할인',
+    '장기계약',
   ];
 
   const toggleFilter = (category, item) => {
@@ -37,71 +30,59 @@ const ComparePet = () => {
   const insuranceData = [
     {
       id: 1,
-      company: "삼성화재",
-      logo: "🐶",
+      company: '삼성화재',
+      logo: '🐶',
       rating: 4.6,
       reviews: 3234,
       coverage: [
-        { name: "질병 진료비", amount: "연 200만원" },
-        { name: "수술비", amount: "최대 500만원" },
-        { name: "배상책임", amount: "1천만원" },
-        { name: "장례비", amount: "100만원" },
-        { name: "예방접종", amount: "연 20만원" },
+        { name: '질병 진료비', amount: '연 200만원' },
+        { name: '수술비', amount: '최대 500만원' },
+        { name: '배상책임', amount: '1천만원' },
+        { name: '장례비', amount: '100만원' },
+        { name: '예방접종', amount: '연 20만원' },
       ],
-      specialties: [
-        "24시간 동물병원 안내",
-        "반려동물 전문 수의사 상담",
-        "전국 동물병원 네트워크",
-      ],
-      discounts: ["중성화 완료 10%", "예방접종 완료 8%", "마이크로칩 등록 5%"],
-      color: "#F59E0B",
+      specialties: ['24시간 동물병원 안내', '반려동물 전문 수의사 상담', '전국 동물병원 네트워크'],
+      discounts: ['중성화 완료 10%', '예방접종 완료 8%', '마이크로칩 등록 5%'],
+      color: '#F59E0B',
     },
     {
       id: 2,
-      company: "현대해상",
-      logo: "🐱",
+      company: '현대해상',
+      logo: '🐱',
       rating: 4.5,
       reviews: 2987,
       coverage: [
-        { name: "질병 진료비", amount: "연 200만원" },
-        { name: "수술비", amount: "최대 500만원" },
-        { name: "배상책임", amount: "1천만원" },
-        { name: "장례비", amount: "100만원" },
-        { name: "건강검진", amount: "연 30만원" },
+        { name: '질병 진료비', amount: '연 200만원' },
+        { name: '수술비', amount: '최대 500만원' },
+        { name: '배상책임', amount: '1천만원' },
+        { name: '장례비', amount: '100만원' },
+        { name: '건강검진', amount: '연 30만원' },
       ],
-      specialties: [
-        "반려동물 건강관리 앱",
-        "치료비 선지급 서비스",
-        "펫시터 추천 서비스",
-      ],
-      discounts: ["다견 할인 15%", "온라인 가입 10%", "장기계약 12%"],
-      color: "#8B5CF6",
+      specialties: ['반려동물 건강관리 앱', '치료비 선지급 서비스', '펫시터 추천 서비스'],
+      discounts: ['다견 할인 15%', '온라인 가입 10%', '장기계약 12%'],
+      color: '#8B5CF6',
     },
     {
       id: 3,
-      company: "DB손해보험",
-      logo: "🐾",
+      company: 'DB손해보험',
+      logo: '🐾',
       rating: 4.4,
       reviews: 2654,
       coverage: [
-        { name: "질병 진료비", amount: "연 200만원" },
-        { name: "수술비", amount: "최대 500만원" },
-        { name: "배상책임", amount: "1천만원" },
-        { name: "장례비", amount: "100만원" },
-        { name: "통합 보장", amount: "최대 800만원" },
+        { name: '질병 진료비', amount: '연 200만원' },
+        { name: '수술비', amount: '최대 500만원' },
+        { name: '배상책임', amount: '1천만원' },
+        { name: '장례비', amount: '100만원' },
+        { name: '통합 보장', amount: '최대 800만원' },
       ],
-      specialties: [
-        "반려동물 행동교정 지원",
-        "유기견 입양 지원 프로그램",
-        "반려동물 호텔 할인",
-      ],
-      discounts: ["중성화 완료 12%", "예방접종 완료 10%", "온라인 가입 7%"],
-      color: "#10B981",
+      specialties: ['반려동물 행동교정 지원', '유기견 입양 지원 프로그램', '반려동물 호텔 할인'],
+      discounts: ['중성화 완료 12%', '예방접종 완료 10%', '온라인 가입 7%'],
+      color: '#10B981',
     },
   ];
 
   const scrollToConsultation = () => {
-    window.location.href = "/#consultation";
+    window.location.href = '/#consultation';
   };
 
   return (
@@ -110,10 +91,7 @@ const ComparePet = () => {
       <div className="compare-hero">
         <div className="compare-hero-content">
           <h1>🐶 펫보험 한눈에 비교하기</h1>
-          <p>
-            소중한 반려동물을 위한 펫보험, 주요 보험사를 비교하고 최적의 보장을
-            선택하세요
-          </p>
+          <p>소중한 반려동물을 위한 펫보험, 주요 보험사를 비교하고 최적의 보장을 선택하세요</p>
         </div>
       </div>
 
@@ -127,9 +105,9 @@ const ComparePet = () => {
                 <button
                   key={option}
                   className={`filter-chip ${
-                    selectedFilters.coverage.includes(option) ? "active" : ""
+                    selectedFilters.coverage.includes(option) ? 'active' : ''
                   }`}
-                  onClick={() => toggleFilter("coverage", option)}
+                  onClick={() => toggleFilter('coverage', option)}
                 >
                   {option}
                 </button>
@@ -144,9 +122,9 @@ const ComparePet = () => {
                 <button
                   key={option}
                   className={`filter-chip ${
-                    selectedFilters.discounts.includes(option) ? "active" : ""
+                    selectedFilters.discounts.includes(option) ? 'active' : ''
                   }`}
-                  onClick={() => toggleFilter("discounts", option)}
+                  onClick={() => toggleFilter('discounts', option)}
                 >
                   {option}
                 </button>
@@ -159,18 +137,13 @@ const ComparePet = () => {
         <div className="comparison-grid">
           {insuranceData.map((insurance) => (
             <div key={insurance.id} className="insurance-card">
-              <div
-                className="card-header"
-                style={{ borderTopColor: insurance.color }}
-              >
+              <div className="card-header" style={{ borderTopColor: insurance.color }}>
                 <div className="company-info">
                   <span className="company-logo">{insurance.logo}</span>
                   <h2>{insurance.company}</h2>
                 </div>
                 <div className="rating">
-                  <span className="stars">
-                    {"⭐".repeat(Math.floor(insurance.rating))}
-                  </span>
+                  <span className="stars">{'⭐'.repeat(Math.floor(insurance.rating))}</span>
                   <span className="rating-text">
                     {insurance.rating} ({insurance.reviews.toLocaleString()})
                   </span>

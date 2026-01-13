@@ -3,8 +3,8 @@
  * 카카오톡 공유, URL 복사 기능 제공
  */
 
-import React, { useState } from "react";
-import "./ShareButtons.css";
+import React, { useState } from 'react';
+import './ShareButtons.css';
 
 function ShareButtons({ post }) {
   const [copied, setCopied] = useState(false);
@@ -17,21 +17,21 @@ function ShareButtons({ post }) {
     try {
       await navigator.clipboard.writeText(currentUrl);
       setCopied(true);
-      
+
       // 2초 후 복사 메시지 초기화
       setTimeout(() => {
         setCopied(false);
       }, 2000);
     } catch (error) {
-      console.error("URL 복사 실패:", error);
+      console.error('URL 복사 실패:', error);
       // Fallback: 구식 방법
-      const textArea = document.createElement("textarea");
+      const textArea = document.createElement('textarea');
       textArea.value = currentUrl;
       document.body.appendChild(textArea);
       textArea.select();
-      document.execCommand("copy");
+      document.execCommand('copy');
       document.body.removeChild(textArea);
-      
+
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     }
@@ -41,28 +41,27 @@ function ShareButtons({ post }) {
   const handleKakaoShare = () => {
     // Kakao SDK가 로드되었는지 확인
     if (!window.Kakao) {
-      alert("카카오톡 공유 기능을 불러오는 중입니다. 잠시 후 다시 시도해주세요.");
+      alert('카카오톡 공유 기능을 불러오는 중입니다. 잠시 후 다시 시도해주세요.');
       return;
     }
 
     // Kakao SDK 초기화 확인
     if (!window.Kakao.isInitialized()) {
       // JavaScript 키로 초기화
-      const kakaoKey = process.env.REACT_APP_KAKAO_KEY || "cafd9dfe1955184f28f022dadc403d9b";
+      const kakaoKey = process.env.REACT_APP_KAKAO_KEY || 'cafd9dfe1955184f28f022dadc403d9b';
       window.Kakao.init(kakaoKey);
-      console.log("✅ 카카오 SDK 초기화 완료");
+      console.log('✅ 카카오 SDK 초기화 완료');
     }
 
     try {
       window.Kakao.Share.sendDefault({
-        objectType: "feed",
+        objectType: 'feed',
         content: {
           title: post.title,
           description: post.content
-            ? post.content.replace(/<[^>]*>/g, "").substring(0, 100) + "..."
-            : "보험 정보를 확인하세요",
-          imageUrl:
-            "https://via.placeholder.com/800x400/3b82f6/ffffff?text=보험이지", // 나중에 실제 이미지로 변경
+            ? post.content.replace(/<[^>]*>/g, '').substring(0, 100) + '...'
+            : '보험 정보를 확인하세요',
+          imageUrl: 'https://via.placeholder.com/800x400/3b82f6/ffffff?text=보험이지', // 나중에 실제 이미지로 변경
           link: {
             mobileWebUrl: currentUrl,
             webUrl: currentUrl,
@@ -70,7 +69,7 @@ function ShareButtons({ post }) {
         },
         buttons: [
           {
-            title: "자세히 보기",
+            title: '자세히 보기',
             link: {
               mobileWebUrl: currentUrl,
               webUrl: currentUrl,
@@ -79,28 +78,19 @@ function ShareButtons({ post }) {
         ],
       });
     } catch (error) {
-      console.error("카카오톡 공유 오류:", error);
-      alert("카카오톡 공유에 실패했습니다. 나중에 다시 시도해주세요.");
+      console.error('카카오톡 공유 오류:', error);
+      alert('카카오톡 공유에 실패했습니다. 나중에 다시 시도해주세요.');
     }
   };
 
   return (
     <div className="share-buttons">
       <div className="share-title">이 글 공유하기</div>
-      
+
       <div className="share-button-group">
         {/* 카카오톡 공유 */}
-        <button
-          onClick={handleKakaoShare}
-          className="share-btn kakao"
-          aria-label="카카오톡 공유"
-        >
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-          >
+        <button onClick={handleKakaoShare} className="share-btn kakao" aria-label="카카오톡 공유">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
             <path d="M12 3C6.5 3 2 6.6 2 11c0 2.8 1.9 5.3 4.8 6.7-.2.7-.6 2.1-.7 2.5 0 0 0 .2.1.3.1.1.2.1.3 0 .5-.3 2.4-1.6 2.8-1.9.5.1 1.1.1 1.7.1 5.5 0 10-3.6 10-8S17.5 3 12 3z" />
           </svg>
           카카오톡
@@ -109,7 +99,7 @@ function ShareButtons({ post }) {
         {/* URL 복사 */}
         <button
           onClick={handleCopyUrl}
-          className={`share-btn url ${copied ? "copied" : ""}`}
+          className={`share-btn url ${copied ? 'copied' : ''}`}
           aria-label="URL 복사"
         >
           <svg
@@ -129,19 +119,14 @@ function ShareButtons({ post }) {
               </>
             )}
           </svg>
-          {copied ? "복사 완료!" : "URL 복사"}
+          {copied ? '복사 완료!' : 'URL 복사'}
         </button>
       </div>
 
       {/* 복사 성공 메시지 */}
-      {copied && (
-        <div className="copy-toast">
-          ✅ URL이 클립보드에 복사되었습니다!
-        </div>
-      )}
+      {copied && <div className="copy-toast">✅ URL이 클립보드에 복사되었습니다!</div>}
     </div>
   );
 }
 
 export default ShareButtons;
-

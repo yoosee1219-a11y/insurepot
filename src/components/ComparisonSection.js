@@ -5,7 +5,7 @@ function ComparisonSection() {
     carType: '중형차',
     driverAge: '만 31-40세',
     experience: '3-5년',
-    coverage: '자차 포함'
+    coverage: '자차 포함',
   });
 
   const mockResults = [
@@ -13,20 +13,20 @@ function ComparisonSection() {
       company: '삼성',
       name: '삼성화재 다이렉트',
       note: '온라인 할인 15% 적용',
-      price: 452000
+      price: 452000,
     },
     {
       company: '현대',
       name: '현대해상 다이렉트',
       note: '마일리지 특약 포함',
-      price: 468000
+      price: 468000,
     },
     {
       company: 'KB',
       name: 'KB손해보험 다이렉트',
       note: '안전운전 할인 적용',
-      price: 445000
-    }
+      price: 445000,
+    },
   ];
 
   const handleCompare = () => {
@@ -38,13 +38,13 @@ function ComparisonSection() {
       <h2 className="section-title">🔍 실시간 보험료 비교</h2>
       <div className="comparison-tool">
         <h3>다이렉트 자동차보험 비교견적</h3>
-        
+
         <div className="comparison-filters">
           <div className="filter-group">
             <label>차량 종류</label>
-            <select 
+            <select
               value={filters.carType}
-              onChange={(e) => setFilters({...filters, carType: e.target.value})}
+              onChange={(e) => setFilters({ ...filters, carType: e.target.value })}
             >
               <option>소형차</option>
               <option>중형차</option>
@@ -52,12 +52,12 @@ function ComparisonSection() {
               <option>SUV</option>
             </select>
           </div>
-          
+
           <div className="filter-group">
             <label>운전자 연령</label>
-            <select 
+            <select
               value={filters.driverAge}
-              onChange={(e) => setFilters({...filters, driverAge: e.target.value})}
+              onChange={(e) => setFilters({ ...filters, driverAge: e.target.value })}
             >
               <option>만 21-25세</option>
               <option>만 26-30세</option>
@@ -65,12 +65,12 @@ function ComparisonSection() {
               <option>만 41세 이상</option>
             </select>
           </div>
-          
+
           <div className="filter-group">
             <label>운전경력</label>
-            <select 
+            <select
               value={filters.experience}
-              onChange={(e) => setFilters({...filters, experience: e.target.value})}
+              onChange={(e) => setFilters({ ...filters, experience: e.target.value })}
             >
               <option>1년 미만</option>
               <option>1-3년</option>
@@ -78,12 +78,12 @@ function ComparisonSection() {
               <option>5년 이상</option>
             </select>
           </div>
-          
+
           <div className="filter-group">
             <label>보장범위</label>
-            <select 
+            <select
               value={filters.coverage}
-              onChange={(e) => setFilters({...filters, coverage: e.target.value})}
+              onChange={(e) => setFilters({ ...filters, coverage: e.target.value })}
             >
               <option>대인/대물</option>
               <option>자차 포함</option>
@@ -91,11 +91,11 @@ function ComparisonSection() {
             </select>
           </div>
         </div>
-        
-        <button className="cta-button" onClick={handleCompare} style={{width: '100%'}}>
+
+        <button className="cta-button" onClick={handleCompare} style={{ width: '100%' }}>
           비교 견적 받기
         </button>
-        
+
         <div className="comparison-results">
           <h4>비교 결과 (연간보험료)</h4>
           {mockResults.map((result, index) => (

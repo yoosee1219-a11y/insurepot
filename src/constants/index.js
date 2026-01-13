@@ -11,15 +11,10 @@ export {
   POST_CATEGORY_LIST,
   DEFAULT_CATEGORY,
   DEFAULT_INSURANCE_TYPE,
-} from "./insurance";
+} from './insurance';
 
 // 상태 관련
-export {
-  CONSULTATION_STATUS,
-  STATUS_COLORS,
-  STATUS_LABELS,
-  STATUS_OPTIONS,
-} from "./status";
+export { CONSULTATION_STATUS, STATUS_COLORS, STATUS_LABELS, STATUS_OPTIONS } from './status';
 
 // 메시지 관련
 export {
@@ -28,7 +23,7 @@ export {
   COMMENT_MESSAGES,
   CONSULTATION_MESSAGES,
   GENERAL_MESSAGES,
-} from "./messages";
+} from './messages';
 
 // 폼 기본값
 export {
@@ -36,4 +31,4 @@ export {
   CONSULTATION_FORM_DEFAULTS,
   COMMENT_FORM_DEFAULTS,
   LOGIN_FORM_DEFAULTS,
-} from "./formDefaults";
+} from './formDefaults';

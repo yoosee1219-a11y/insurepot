@@ -3,13 +3,9 @@
  * 게시글 CRUD 작업을 처리
  */
 
-import { supabase } from "../supabaseClient";
-import {
-  handleApiError,
-  createSuccessResult,
-  checkSupabaseResponse,
-} from "../utils/errorHandler";
-import { POST_MESSAGES } from "../constants";
+import { supabase } from '../supabaseClient';
+import { handleApiError, createSuccessResult, checkSupabaseResponse } from '../utils/errorHandler';
+import { POST_MESSAGES } from '../constants';
 
 export const postService = {
   /**
@@ -19,9 +15,9 @@ export const postService = {
   fetchAll: async () => {
     try {
       const response = await supabase
-        .from("posts")
-        .select("*")
-        .order("created_at", { ascending: false });
+        .from('posts')
+        .select('*')
+        .order('created_at', { ascending: false });
 
       const data = checkSupabaseResponse(response, POST_MESSAGES.FETCH_ERROR);
 
@@ -39,10 +35,10 @@ export const postService = {
   fetchPublished: async (limit = null) => {
     try {
       let query = supabase
-        .from("posts")
-        .select("*")
-        .eq("is_published", true)
-        .order("created_at", { ascending: false });
+        .from('posts')
+        .select('*')
+        .eq('is_published', true)
+        .order('created_at', { ascending: false });
 
       if (limit) {
         query = query.limit(limit);
@@ -65,10 +61,10 @@ export const postService = {
   fetchById: async (id) => {
     try {
       const response = await supabase
-        .from("posts")
-        .select("*")
-        .eq("id", id)
-        .eq("is_published", true)
+        .from('posts')
+        .select('*')
+        .eq('id', id)
+        .eq('is_published', true)
         .single();
 
       const data = checkSupabaseResponse(response, POST_MESSAGES.FETCH_ERROR);
@@ -86,7 +82,7 @@ export const postService = {
    */
   create: async (postData) => {
     try {
-      const response = await supabase.from("posts").insert([postData]);
+      const response = await supabase.from('posts').insert([postData]);
 
       checkSupabaseResponse(response, POST_MESSAGES.CREATE_ERROR);
 
@@ -104,10 +100,7 @@ export const postService = {
    */
   update: async (id, postData) => {
     try {
-      const response = await supabase
-        .from("posts")
-        .update(postData)
-        .eq("id", id);
+      const response = await supabase.from('posts').update(postData).eq('id', id);
 
       checkSupabaseResponse(response, POST_MESSAGES.UPDATE_ERROR);
 
@@ -124,7 +117,7 @@ export const postService = {
    */
   delete: async (id) => {
     try {
-      const response = await supabase.from("posts").delete().eq("id", id);
+      const response = await supabase.from('posts').delete().eq('id', id);
 
       checkSupabaseResponse(response, POST_MESSAGES.DELETE_ERROR);
 
@@ -141,15 +134,15 @@ export const postService = {
    */
   incrementViewCount: async (postId) => {
     try {
-      const response = await supabase.rpc("increment_view_count", {
+      const response = await supabase.rpc('increment_view_count', {
         post_id: postId,
       });
 
-      checkSupabaseResponse(response, "조회수 증가 실패");
+      checkSupabaseResponse(response, '조회수 증가 실패');
 
       return createSuccessResult(null);
     } catch (error) {
-      return handleApiError(error, "조회수 증가 실패");
+      return handleApiError(error, '조회수 증가 실패');
     }
   },
 
@@ -159,32 +152,26 @@ export const postService = {
    */
   fetchCategoryCounts: async () => {
     try {
-      const response = await supabase
-        .from("posts")
-        .select("category")
-        .eq("is_published", true);
+      const response = await supabase.from('posts').select('category').eq('is_published', true);
 
-      const data = checkSupabaseResponse(response, "카테고리 조회 실패");
+      const data = checkSupabaseResponse(response, '카테고리 조회 실패');
 
       // 카테고리별 개수 계산
       const categoryCount = {};
       data.forEach((post) => {
         if (post.category) {
-          categoryCount[post.category] =
-            (categoryCount[post.category] || 0) + 1;
+          categoryCount[post.category] = (categoryCount[post.category] || 0) + 1;
         }
       });
 
-      const categoryList = Object.entries(categoryCount).map(
-        ([name, count]) => ({
-          name,
-          count,
-        })
-      );
+      const categoryList = Object.entries(categoryCount).map(([name, count]) => ({
+        name,
+        count,
+      }));
 
       return createSuccessResult(categoryList);
     } catch (error) {
-      return handleApiError(error, "카테고리 조회 실패");
+      return handleApiError(error, '카테고리 조회 실패');
     }
   },
 
@@ -197,21 +184,21 @@ export const postService = {
     try {
       // 이전 글
       const prevResponse = await supabase
-        .from("posts")
-        .select("id, title")
-        .eq("is_published", true)
-        .lt("created_at", currentDate)
-        .order("created_at", { ascending: false })
+        .from('posts')
+        .select('id, title')
+        .eq('is_published', true)
+        .lt('created_at', currentDate)
+        .order('created_at', { ascending: false })
         .limit(1)
         .single();
 
       // 다음 글
       const nextResponse = await supabase
-        .from("posts")
-        .select("id, title")
-        .eq("is_published", true)
-        .gt("created_at", currentDate)
-        .order("created_at", { ascending: true })
+        .from('posts')
+        .select('id, title')
+        .eq('is_published', true)
+        .gt('created_at', currentDate)
+        .order('created_at', { ascending: true })
         .limit(1)
         .single();
 
@@ -220,7 +207,7 @@ export const postService = {
         nextPost: nextResponse.data || null,
       });
     } catch (error) {
-      return handleApiError(error, "인접 게시글 조회 실패");
+      return handleApiError(error, '인접 게시글 조회 실패');
     }
   },
 
@@ -232,17 +219,17 @@ export const postService = {
   fetchRecent: async (limit = 5) => {
     try {
       const response = await supabase
-        .from("posts")
-        .select("id, title, created_at")
-        .eq("is_published", true)
-        .order("created_at", { ascending: false })
+        .from('posts')
+        .select('id, title, created_at')
+        .eq('is_published', true)
+        .order('created_at', { ascending: false })
         .limit(limit);
 
-      const data = checkSupabaseResponse(response, "최근 게시글 조회 실패");
+      const data = checkSupabaseResponse(response, '최근 게시글 조회 실패');
 
       return createSuccessResult(data || []);
     } catch (error) {
-      return handleApiError(error, "최근 게시글 조회 실패");
+      return handleApiError(error, '최근 게시글 조회 실패');
     }
   },
 
@@ -256,11 +243,11 @@ export const postService = {
     try {
       // 1. 인기글로 설정된 글 가져오기
       const featuredResponse = await supabase
-        .from("posts")
-        .select("*")
-        .eq("is_published", true)
-        .eq("is_featured", true)
-        .order("view_count", { ascending: false });
+        .from('posts')
+        .select('*')
+        .eq('is_published', true)
+        .eq('is_featured', true)
+        .order('view_count', { ascending: false });
 
       const featuredPosts = featuredResponse.data || [];
 
@@ -270,11 +257,11 @@ export const postService = {
 
       if (remainingLimit > 0) {
         const topResponse = await supabase
-          .from("posts")
-          .select("*")
-          .eq("is_published", true)
-          .eq("is_featured", false)
-          .order("view_count", { ascending: false })
+          .from('posts')
+          .select('*')
+          .eq('is_published', true)
+          .eq('is_featured', false)
+          .order('view_count', { ascending: false })
           .limit(remainingLimit);
 
         topPosts = topResponse.data || [];
@@ -285,7 +272,7 @@ export const postService = {
 
       return createSuccessResult(popularPosts);
     } catch (error) {
-      return handleApiError(error, "인기 게시글 조회 실패");
+      return handleApiError(error, '인기 게시글 조회 실패');
     }
   },
 };

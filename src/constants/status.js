@@ -5,23 +5,23 @@
 
 // 상담 문의 상태
 export const CONSULTATION_STATUS = {
-  PENDING: "pending",
-  IN_PROGRESS: "in_progress",
-  COMPLETED: "completed",
+  PENDING: 'pending',
+  IN_PROGRESS: 'in_progress',
+  COMPLETED: 'completed',
 };
 
 // 상태별 색상
 export const STATUS_COLORS = {
-  [CONSULTATION_STATUS.PENDING]: "#f59e0b",
-  [CONSULTATION_STATUS.IN_PROGRESS]: "#3b82f6",
-  [CONSULTATION_STATUS.COMPLETED]: "#10b981",
+  [CONSULTATION_STATUS.PENDING]: '#f59e0b',
+  [CONSULTATION_STATUS.IN_PROGRESS]: '#3b82f6',
+  [CONSULTATION_STATUS.COMPLETED]: '#10b981',
 };
 
 // 상태별 라벨
 export const STATUS_LABELS = {
-  [CONSULTATION_STATUS.PENDING]: "대기중",
-  [CONSULTATION_STATUS.IN_PROGRESS]: "진행중",
-  [CONSULTATION_STATUS.COMPLETED]: "완료",
+  [CONSULTATION_STATUS.PENDING]: '대기중',
+  [CONSULTATION_STATUS.IN_PROGRESS]: '진행중',
+  [CONSULTATION_STATUS.COMPLETED]: '완료',
 };
 
 // 상태 옵션 배열 (select용)

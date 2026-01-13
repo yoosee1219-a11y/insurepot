@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 function Footer() {
   return (
@@ -8,7 +8,7 @@ function Footer() {
           <h4>회사 소개</h4>
           <ul>
             <li>
-              <a href="#about">보험이지 소개</a>
+              <a href="#about">보이지 소개</a>
             </li>
             <li>
               <a href="#partnership">제휴 문의</a>
@@ -78,10 +78,7 @@ function Footer() {
       </div>
 
       <div className="footer-bottom">
-        <p>
-          &copy; 2024 보험이지. All rights reserved. | 보험대리점 등록번호:
-          2024-서울-1234
-        </p>
+        <p>&copy; 2025 보이지 (boeasy.co.kr) | 보험 전문 컨설팅</p>
       </div>
     </footer>
   );

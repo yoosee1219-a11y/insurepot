@@ -3,7 +3,7 @@
  * 로컬스토리지 기반으로 사용자가 본 게시글 추적
  */
 
-const STORAGE_KEY = "insurepot_recently_viewed";
+const STORAGE_KEY = 'insurepot_recently_viewed';
 const MAX_ITEMS = 10; // 최대 10개까지 저장
 
 /**
@@ -15,7 +15,7 @@ export const getRecentlyViewed = () => {
     const data = localStorage.getItem(STORAGE_KEY);
     return data ? JSON.parse(data) : [];
   } catch (error) {
-    console.error("최근 본 글 로딩 실패:", error);
+    console.error('최근 본 글 로딩 실패:', error);
     return [];
   }
 };
@@ -50,7 +50,7 @@ export const addRecentlyViewed = (post) => {
 
     return true;
   } catch (error) {
-    console.error("최근 본 글 저장 실패:", error);
+    console.error('최근 본 글 저장 실패:', error);
     return false;
   }
 };
@@ -63,7 +63,7 @@ export const clearRecentlyViewed = () => {
     localStorage.removeItem(STORAGE_KEY);
     return true;
   } catch (error) {
-    console.error("최근 본 글 삭제 실패:", error);
+    console.error('최근 본 글 삭제 실패:', error);
     return false;
   }
 };
@@ -79,7 +79,7 @@ export const removeRecentlyViewed = (postId) => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(recentPosts));
     return true;
   } catch (error) {
-    console.error("최근 본 글 제거 실패:", error);
+    console.error('최근 본 글 제거 실패:', error);
     return false;
   }
 };

@@ -56,10 +56,12 @@ npm start
 ```
 
 브라우저에서 확인:
+
 - http://localhost:3000 - 메인 페이지
 - http://localhost:3000/admin - 관리자 페이지
 
 **테스트 항목:**
+
 - [ ] 메인 페이지가 정상적으로 로딩됨
 - [ ] 관리자 페이지 접속 가능
 - [ ] 게시글 작성 후 저장 확인
@@ -97,10 +99,10 @@ git push -u origin main
 
 "Environment Variables" 섹션에서:
 
-| Name | Value |
-|------|-------|
-| `REACT_APP_SUPABASE_URL` | https://your-project.supabase.co |
-| `REACT_APP_SUPABASE_ANON_KEY` | your-anon-key-here |
+| Name                          | Value                            |
+| ----------------------------- | -------------------------------- |
+| `REACT_APP_SUPABASE_URL`      | https://your-project.supabase.co |
+| `REACT_APP_SUPABASE_ANON_KEY` | your-anon-key-here               |
 
 #### 4. 배포
 
@@ -188,14 +190,17 @@ import { Analytics } from '@vercel/analytics/react';
 ## 🐛 문제 해결
 
 ### 배포 후 페이지가 비어있음
+
 → 환경변수가 제대로 설정되었는지 확인
 → Vercel 대시보드에서 "Deployments" → "Functions" 로그 확인
 
 ### Supabase 연결 오류
+
 → RLS 정책이 활성화되었는지 확인
 → API URL이 https://로 시작하는지 확인
 
 ### 404 오류 (관리자 페이지)
+
 → `vercel.json` 파일이 있는지 확인
 → 재배포: `vercel --prod`
 
@@ -204,12 +209,14 @@ import { Analytics } from '@vercel/analytics/react';
 ## 📈 성능 최적화
 
 ### 이미지 최적화
+
 ```bash
 npm install next/image
 # 이미지 컴포넌트 사용
 ```
 
 ### 번들 크기 분석
+
 ```bash
 npm run build
 npx source-map-explorer 'build/static/js/*.js'
@@ -220,6 +227,7 @@ npx source-map-explorer 'build/static/js/*.js'
 ## 🎯 다음 단계
 
 배포 완료 후 추천 작업:
+
 - [ ] Google Analytics 연동
 - [ ] Search Console 등록
 - [ ] 사이트맵 제출
@@ -232,6 +240,7 @@ npx source-map-explorer 'build/static/js/*.js'
 ## 📞 지원
 
 문제 발생 시:
+
 1. Vercel 로그 확인
 2. Supabase 로그 확인
 3. 브라우저 콘솔 확인

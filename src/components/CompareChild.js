@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import "./CompareChild.css";
+import React, { useState } from 'react';
+import './CompareChild.css';
 
 const CompareChild = () => {
   const [selectedFilters, setSelectedFilters] = useState({
@@ -8,21 +8,21 @@ const CompareChild = () => {
   });
 
   const coverageOptions = [
-    "태아 가입",
-    "선천이상 보장",
-    "소아암 보장",
-    "성인까지 보장",
-    "상해/질병",
-    "입원/수술비",
+    '태아 가입',
+    '선천이상 보장',
+    '소아암 보장',
+    '성인까지 보장',
+    '상해/질병',
+    '입원/수술비',
   ];
 
   const discountOptions = [
-    "임신 중 가입",
-    "건강한 출산",
-    "쌍둥이 할인",
-    "온라인 가입",
-    "장기계약",
-    "형제자매 할인",
+    '임신 중 가입',
+    '건강한 출산',
+    '쌍둥이 할인',
+    '온라인 가입',
+    '장기계약',
+    '형제자매 할인',
   ];
 
   const toggleFilter = (category, item) => {
@@ -37,71 +37,59 @@ const CompareChild = () => {
   const insuranceData = [
     {
       id: 1,
-      company: "삼성생명",
-      logo: "👶",
+      company: '삼성생명',
+      logo: '👶',
       rating: 4.8,
       reviews: 5234,
       coverage: [
-        { name: "선천이상 보장", amount: "최대 5천만원" },
-        { name: "소아암 진단금", amount: "3천만원" },
-        { name: "상해/질병 입원", amount: "1일 5만원" },
-        { name: "수술비", amount: "최대 1천만원" },
-        { name: "성인까지 보장", amount: "100세까지" },
+        { name: '선천이상 보장', amount: '최대 5천만원' },
+        { name: '소아암 진단금', amount: '3천만원' },
+        { name: '상해/질병 입원', amount: '1일 5만원' },
+        { name: '수술비', amount: '최대 1천만원' },
+        { name: '성인까지 보장', amount: '100세까지' },
       ],
-      specialties: [
-        "태아 22주부터 가입 가능",
-        "출산 전후 질환 보장",
-        "자동 성인 전환 시스템",
-      ],
-      discounts: ["임신 중 가입 10%", "온라인 가입 8%", "장기계약 12%"],
-      color: "#EC4899",
+      specialties: ['태아 22주부터 가입 가능', '출산 전후 질환 보장', '자동 성인 전환 시스템'],
+      discounts: ['임신 중 가입 10%', '온라인 가입 8%', '장기계약 12%'],
+      color: '#EC4899',
     },
     {
       id: 2,
-      company: "현대라이프",
-      logo: "🍼",
+      company: '현대라이프',
+      logo: '🍼',
       rating: 4.7,
       reviews: 4876,
       coverage: [
-        { name: "선천이상 보장", amount: "최대 5천만원" },
-        { name: "소아암 진단금", amount: "3천만원" },
-        { name: "상해/질병 입원", amount: "1일 5만원" },
-        { name: "수술비", amount: "최대 1천만원" },
-        { name: "평생 보장", amount: "100세까지" },
+        { name: '선천이상 보장', amount: '최대 5천만원' },
+        { name: '소아암 진단금', amount: '3천만원' },
+        { name: '상해/질병 입원', amount: '1일 5만원' },
+        { name: '수술비', amount: '최대 1천만원' },
+        { name: '평생 보장', amount: '100세까지' },
       ],
-      specialties: [
-        "임신 16주부터 가입 가능",
-        "신생아 집중 케어",
-        "성장기 건강검진 지원",
-      ],
-      discounts: ["건강한 출산 12%", "쌍둥이 할인 15%", "형제자매 할인 10%"],
-      color: "#A855F7",
+      specialties: ['임신 16주부터 가입 가능', '신생아 집중 케어', '성장기 건강검진 지원'],
+      discounts: ['건강한 출산 12%', '쌍둥이 할인 15%', '형제자매 할인 10%'],
+      color: '#A855F7',
     },
     {
       id: 3,
-      company: "KB손해보험",
-      logo: "🎈",
+      company: 'KB손해보험',
+      logo: '🎈',
       rating: 4.6,
       reviews: 4321,
       coverage: [
-        { name: "선천이상 보장", amount: "최대 5천만원" },
-        { name: "소아암 진단금", amount: "3천만원" },
-        { name: "상해/질병 입원", amount: "1일 5만원" },
-        { name: "수술비", amount: "최대 1천만원" },
-        { name: "통합 보장", amount: "최대 1억원" },
+        { name: '선천이상 보장', amount: '최대 5천만원' },
+        { name: '소아암 진단금', amount: '3천만원' },
+        { name: '상해/질병 입원', amount: '1일 5만원' },
+        { name: '수술비', amount: '최대 1천만원' },
+        { name: '통합 보장', amount: '최대 1억원' },
       ],
-      specialties: [
-        "태아부터 평생 보장",
-        "성장 단계별 특약 추가",
-        "교육비 지원 특약",
-      ],
-      discounts: ["임신 중 가입 10%", "온라인 가입 7%", "장기계약 15%"],
-      color: "#F59E0B",
+      specialties: ['태아부터 평생 보장', '성장 단계별 특약 추가', '교육비 지원 특약'],
+      discounts: ['임신 중 가입 10%', '온라인 가입 7%', '장기계약 15%'],
+      color: '#F59E0B',
     },
   ];
 
   const scrollToConsultation = () => {
-    window.location.href = "/#consultation";
+    window.location.href = '/#consultation';
   };
 
   return (
@@ -110,10 +98,7 @@ const CompareChild = () => {
       <div className="compare-hero">
         <div className="compare-hero-content">
           <h1>👶 어린이(태아)보험 한눈에 비교하기</h1>
-          <p>
-            태아부터 평생보장, 우리 아이를 위한 최적의 보험을 비교하고
-            선택하세요
-          </p>
+          <p>태아부터 평생보장, 우리 아이를 위한 최적의 보험을 비교하고 선택하세요</p>
         </div>
       </div>
 
@@ -127,9 +112,9 @@ const CompareChild = () => {
                 <button
                   key={option}
                   className={`filter-chip ${
-                    selectedFilters.coverage.includes(option) ? "active" : ""
+                    selectedFilters.coverage.includes(option) ? 'active' : ''
                   }`}
-                  onClick={() => toggleFilter("coverage", option)}
+                  onClick={() => toggleFilter('coverage', option)}
                 >
                   {option}
                 </button>
@@ -144,9 +129,9 @@ const CompareChild = () => {
                 <button
                   key={option}
                   className={`filter-chip ${
-                    selectedFilters.discounts.includes(option) ? "active" : ""
+                    selectedFilters.discounts.includes(option) ? 'active' : ''
                   }`}
-                  onClick={() => toggleFilter("discounts", option)}
+                  onClick={() => toggleFilter('discounts', option)}
                 >
                   {option}
                 </button>
@@ -159,18 +144,13 @@ const CompareChild = () => {
         <div className="comparison-grid">
           {insuranceData.map((insurance) => (
             <div key={insurance.id} className="insurance-card">
-              <div
-                className="card-header"
-                style={{ borderTopColor: insurance.color }}
-              >
+              <div className="card-header" style={{ borderTopColor: insurance.color }}>
                 <div className="company-info">
                   <span className="company-logo">{insurance.logo}</span>
                   <h2>{insurance.company}</h2>
                 </div>
                 <div className="rating">
-                  <span className="stars">
-                    {"⭐".repeat(Math.floor(insurance.rating))}
-                  </span>
+                  <span className="stars">{'⭐'.repeat(Math.floor(insurance.rating))}</span>
                   <span className="rating-text">
                     {insurance.rating} ({insurance.reviews.toLocaleString()})
                   </span>

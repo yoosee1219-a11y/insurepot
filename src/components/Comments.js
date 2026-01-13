@@ -1,8 +1,8 @@
-import React, { useCallback } from "react";
-import "./Comments.css";
-import CommentItem from "./CommentItem";
-import { useComments } from "../hooks";
-import { COMMENT_MESSAGES } from "../constants";
+import React, { useCallback } from 'react';
+import './Comments.css';
+import CommentItem from './CommentItem';
+import { useComments } from '../hooks';
+import { COMMENT_MESSAGES } from '../constants';
 
 function Comments({ postId }) {
   const {

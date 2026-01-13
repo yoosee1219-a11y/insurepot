@@ -3,13 +3,9 @@
  * 댓글 CRUD 작업을 처리
  */
 
-import { supabase } from "../supabaseClient";
-import {
-  handleApiError,
-  createSuccessResult,
-  checkSupabaseResponse,
-} from "../utils/errorHandler";
-import { COMMENT_MESSAGES } from "../constants";
+import { supabase } from '../supabaseClient';
+import { handleApiError, createSuccessResult, checkSupabaseResponse } from '../utils/errorHandler';
+import { COMMENT_MESSAGES } from '../constants';
 
 export const commentService = {
   /**
@@ -20,16 +16,16 @@ export const commentService = {
   fetchByPostId: async (postId) => {
     try {
       const response = await supabase
-        .from("comments")
-        .select("*")
-        .eq("post_id", postId)
-        .order("created_at", { ascending: false });
+        .from('comments')
+        .select('*')
+        .eq('post_id', postId)
+        .order('created_at', { ascending: false });
 
-      const data = checkSupabaseResponse(response, "댓글 조회에 실패했습니다");
+      const data = checkSupabaseResponse(response, '댓글 조회에 실패했습니다');
 
       return createSuccessResult(data || []);
     } catch (error) {
-      return handleApiError(error, "댓글 조회에 실패했습니다");
+      return handleApiError(error, '댓글 조회에 실패했습니다');
     }
   },
 
@@ -40,7 +36,7 @@ export const commentService = {
    */
   create: async (commentData) => {
     try {
-      const response = await supabase.from("comments").insert([commentData]);
+      const response = await supabase.from('comments').insert([commentData]);
 
       checkSupabaseResponse(response, COMMENT_MESSAGES.CREATE_ERROR);
 
@@ -57,10 +53,7 @@ export const commentService = {
    */
   delete: async (commentId) => {
     try {
-      const response = await supabase
-        .from("comments")
-        .delete()
-        .eq("id", commentId);
+      const response = await supabase.from('comments').delete().eq('id', commentId);
 
       checkSupabaseResponse(response, COMMENT_MESSAGES.DELETE_ERROR);
 
@@ -78,15 +71,15 @@ export const commentService = {
   countByPostId: async (postId) => {
     try {
       const response = await supabase
-        .from("comments")
-        .select("*", { count: "exact", head: true })
-        .eq("post_id", postId);
+        .from('comments')
+        .select('*', { count: 'exact', head: true })
+        .eq('post_id', postId);
 
-      checkSupabaseResponse(response, "댓글 개수 조회에 실패했습니다");
+      checkSupabaseResponse(response, '댓글 개수 조회에 실패했습니다');
 
       return createSuccessResult(response.count || 0);
     } catch (error) {
-      return handleApiError(error, "댓글 개수 조회에 실패했습니다");
+      return handleApiError(error, '댓글 개수 조회에 실패했습니다');
     }
   },
 };

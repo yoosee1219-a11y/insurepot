@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "보험이지",
+  "name": "보험이지 - 보험 비교 플랫폼",
   "icons": [
     {
       "src": "favicon.ico",

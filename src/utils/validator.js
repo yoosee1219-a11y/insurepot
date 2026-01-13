@@ -9,10 +9,10 @@
  * @returns {string} 정제된 문자열
  */
 export const sanitizeHtml = (input) => {
-  if (!input || typeof input !== "string") return "";
+  if (!input || typeof input !== 'string') return '';
 
   // HTML 태그 제거
-  const div = document.createElement("div");
+  const div = document.createElement('div');
   div.textContent = input;
   return div.innerHTML;
 };
@@ -23,7 +23,7 @@ export const sanitizeHtml = (input) => {
  * @returns {boolean} 안전하면 true
  */
 export const isSqlSafe = (input) => {
-  if (!input || typeof input !== "string") return true;
+  if (!input || typeof input !== 'string') return true;
 
   const dangerousPatterns = [
     /(\b(SELECT|INSERT|UPDATE|DELETE|DROP|UNION|ALTER|CREATE|EXEC|SCRIPT)\b)/gi,
@@ -41,13 +41,13 @@ export const isSqlSafe = (input) => {
  */
 export const validateName = (name) => {
   if (!name || name.trim().length === 0) {
-    return { valid: false, error: "이름을 입력해주세요." };
+    return { valid: false, error: '이름을 입력해주세요.' };
   }
 
   if (name.length < 2 || name.length > 20) {
     return {
       valid: false,
-      error: "이름은 2~20자 사이로 입력해주세요.",
+      error: '이름은 2~20자 사이로 입력해주세요.',
     };
   }
 
@@ -56,14 +56,14 @@ export const validateName = (name) => {
   if (!namePattern.test(name)) {
     return {
       valid: false,
-      error: "이름은 한글, 영문, 숫자만 사용 가능합니다.",
+      error: '이름은 한글, 영문, 숫자만 사용 가능합니다.',
     };
   }
 
   // XSS 체크
   const sanitized = sanitizeHtml(name);
   if (sanitized !== name) {
-    return { valid: false, error: "유효하지 않은 문자가 포함되어 있습니다." };
+    return { valid: false, error: '유효하지 않은 문자가 포함되어 있습니다.' };
   }
 
   return { valid: true };
@@ -76,37 +76,35 @@ export const validateName = (name) => {
  */
 export const validatePassword = (password) => {
   if (!password || password.length === 0) {
-    return { valid: false, error: "비밀번호를 입력해주세요." };
+    return { valid: false, error: '비밀번호를 입력해주세요.' };
   }
 
   if (password.length < 4) {
     return {
       valid: false,
-      error: "비밀번호는 최소 4자 이상이어야 합니다.",
+      error: '비밀번호는 최소 4자 이상이어야 합니다.',
     };
   }
 
   if (password.length > 50) {
     return {
       valid: false,
-      error: "비밀번호는 50자 이하로 입력해주세요.",
+      error: '비밀번호는 50자 이하로 입력해주세요.',
     };
   }
 
   // 관리자 비밀번호는 더 강력하게 (선택적)
-  let strength = "약함";
+  let strength = '약함';
   if (password.length >= 8) {
     const hasUpper = /[A-Z]/.test(password);
     const hasLower = /[a-z]/.test(password);
     const hasNumber = /[0-9]/.test(password);
     const hasSpecial = /[!@#$%^&*(),.?":{}|<>]/.test(password);
 
-    const strengthScore = [hasUpper, hasLower, hasNumber, hasSpecial].filter(
-      Boolean
-    ).length;
+    const strengthScore = [hasUpper, hasLower, hasNumber, hasSpecial].filter(Boolean).length;
 
-    if (strengthScore >= 3) strength = "강함";
-    else if (strengthScore >= 2) strength = "보통";
+    if (strengthScore >= 3) strength = '강함';
+    else if (strengthScore >= 2) strength = '보통';
   }
 
   return { valid: true, strength };
@@ -119,20 +117,20 @@ export const validatePassword = (password) => {
  */
 export const validateCommentContent = (content) => {
   if (!content || content.trim().length === 0) {
-    return { valid: false, error: "댓글 내용을 입력해주세요." };
+    return { valid: false, error: '댓글 내용을 입력해주세요.' };
   }
 
   if (content.length < 2) {
     return {
       valid: false,
-      error: "댓글은 최소 2자 이상 입력해주세요.",
+      error: '댓글은 최소 2자 이상 입력해주세요.',
     };
   }
 
   if (content.length > 500) {
     return {
       valid: false,
-      error: "댓글은 500자 이하로 입력해주세요.",
+      error: '댓글은 500자 이하로 입력해주세요.',
     };
   }
 
@@ -140,7 +138,7 @@ export const validateCommentContent = (content) => {
   if (!isSqlSafe(content)) {
     return {
       valid: false,
-      error: "허용되지 않는 문자가 포함되어 있습니다.",
+      error: '허용되지 않는 문자가 포함되어 있습니다.',
     };
   }
 
@@ -149,7 +147,7 @@ export const validateCommentContent = (content) => {
   if (repeatedPattern.test(content)) {
     return {
       valid: false,
-      error: "같은 문자를 너무 많이 반복할 수 없습니다.",
+      error: '같은 문자를 너무 많이 반복할 수 없습니다.',
     };
   }
 
@@ -163,18 +161,18 @@ export const validateCommentContent = (content) => {
  */
 export const validateEmail = (email) => {
   if (!email || email.trim().length === 0) {
-    return { valid: false, error: "이메일을 입력해주세요." };
+    return { valid: false, error: '이메일을 입력해주세요.' };
   }
 
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!emailPattern.test(email)) {
-    return { valid: false, error: "올바른 이메일 형식이 아닙니다." };
+    return { valid: false, error: '올바른 이메일 형식이 아닙니다.' };
   }
 
   if (email.length > 100) {
     return {
       valid: false,
-      error: "이메일은 100자 이하로 입력해주세요.",
+      error: '이메일은 100자 이하로 입력해주세요.',
     };
   }
 
@@ -188,7 +186,7 @@ export const validateEmail = (email) => {
  */
 export const validatePhone = (phone) => {
   if (!phone || phone.trim().length === 0) {
-    return { valid: false, error: "전화번호를 입력해주세요." };
+    return { valid: false, error: '전화번호를 입력해주세요.' };
   }
 
   // 숫자와 하이픈만 허용
@@ -196,16 +194,16 @@ export const validatePhone = (phone) => {
   if (!phonePattern.test(phone)) {
     return {
       valid: false,
-      error: "전화번호는 숫자와 하이픈(-)만 입력 가능합니다.",
+      error: '전화번호는 숫자와 하이픈(-)만 입력 가능합니다.',
     };
   }
 
   // 하이픈 제거 후 길이 체크
-  const digitsOnly = phone.replace(/-/g, "");
+  const digitsOnly = phone.replace(/-/g, '');
   if (digitsOnly.length < 9 || digitsOnly.length > 11) {
     return {
       valid: false,
-      error: "올바른 전화번호 형식이 아닙니다.",
+      error: '올바른 전화번호 형식이 아닙니다.',
     };
   }
 
@@ -226,16 +224,16 @@ export const validateUrl = (url) => {
     const urlObj = new URL(url);
 
     // http, https만 허용
-    if (!["http:", "https:"].includes(urlObj.protocol)) {
+    if (!['http:', 'https:'].includes(urlObj.protocol)) {
       return {
         valid: false,
-        error: "http 또는 https 프로토콜만 허용됩니다.",
+        error: 'http 또는 https 프로토콜만 허용됩니다.',
       };
     }
 
     return { valid: true };
   } catch {
-    return { valid: false, error: "올바른 URL 형식이 아닙니다." };
+    return { valid: false, error: '올바른 URL 형식이 아닙니다.' };
   }
 };
 
@@ -246,13 +244,13 @@ export const validateUrl = (url) => {
  */
 export const validateUsername = (username) => {
   if (!username || username.trim().length === 0) {
-    return { valid: false, error: "아이디를 입력해주세요." };
+    return { valid: false, error: '아이디를 입력해주세요.' };
   }
 
   if (username.length < 4 || username.length > 20) {
     return {
       valid: false,
-      error: "아이디는 4~20자 사이로 입력해주세요.",
+      error: '아이디는 4~20자 사이로 입력해주세요.',
     };
   }
 
@@ -261,7 +259,7 @@ export const validateUsername = (username) => {
   if (!usernamePattern.test(username)) {
     return {
       valid: false,
-      error: "아이디는 영문, 숫자, 언더스코어(_)만 사용 가능합니다.",
+      error: '아이디는 영문, 숫자, 언더스코어(_)만 사용 가능합니다.',
     };
   }
 
@@ -275,20 +273,20 @@ export const validateUsername = (username) => {
  */
 export const validatePostTitle = (title) => {
   if (!title || title.trim().length === 0) {
-    return { valid: false, error: "제목을 입력해주세요." };
+    return { valid: false, error: '제목을 입력해주세요.' };
   }
 
   if (title.length < 2 || title.length > 100) {
     return {
       valid: false,
-      error: "제목은 2~100자 사이로 입력해주세요.",
+      error: '제목은 2~100자 사이로 입력해주세요.',
     };
   }
 
   // XSS 체크
   const sanitized = sanitizeHtml(title);
   if (sanitized !== title) {
-    return { valid: false, error: "유효하지 않은 문자가 포함되어 있습니다." };
+    return { valid: false, error: '유효하지 않은 문자가 포함되어 있습니다.' };
   }
 
   return { valid: true };
@@ -324,7 +322,7 @@ export const validateConsultationData = (consultationData) => {
 
   // 상담 내용 검증 (선택적)
   if (consultationData.message && consultationData.message.length > 1000) {
-    errors.message = "상담 내용은 1000자 이하로 입력해주세요.";
+    errors.message = '상담 내용은 1000자 이하로 입력해주세요.';
   }
 
   return {

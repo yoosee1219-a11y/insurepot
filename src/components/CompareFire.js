@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import "./CompareFire.css";
+import React, { useState } from 'react';
+import './CompareFire.css';
 
 const CompareFire = () => {
   const [selectedFilters, setSelectedFilters] = useState({
@@ -8,21 +8,21 @@ const CompareFire = () => {
   });
 
   const coverageOptions = [
-    "화재 보장",
-    "도난 보장",
-    "배상책임",
-    "임시거주비",
-    "가재도구",
-    "수리비용",
+    '화재 보장',
+    '도난 보장',
+    '배상책임',
+    '임시거주비',
+    '가재도구',
+    '수리비용',
   ];
 
   const discountOptions = [
-    "스프링클러 설치",
-    "경보기 설치",
-    "장기 계약",
-    "온라인 가입",
-    "아파트 거주",
-    "무사고 할인",
+    '스프링클러 설치',
+    '경보기 설치',
+    '장기 계약',
+    '온라인 가입',
+    '아파트 거주',
+    '무사고 할인',
   ];
 
   const toggleFilter = (category, item) => {
@@ -37,71 +37,59 @@ const CompareFire = () => {
   const insuranceData = [
     {
       id: 1,
-      company: "삼성화재",
-      logo: "🏠",
+      company: '삼성화재',
+      logo: '🏠',
       rating: 4.7,
       reviews: 2845,
       coverage: [
-        { name: "건물 화재", amount: "최대 1억원" },
-        { name: "가재도구", amount: "5천만원" },
-        { name: "배상책임", amount: "1억원" },
-        { name: "임시거주비", amount: "월 200만원" },
-        { name: "수리비용", amount: "3천만원" },
+        { name: '건물 화재', amount: '최대 1억원' },
+        { name: '가재도구', amount: '5천만원' },
+        { name: '배상책임', amount: '1억원' },
+        { name: '임시거주비', amount: '월 200만원' },
+        { name: '수리비용', amount: '3천만원' },
       ],
-      specialties: [
-        "24시간 긴급출동 서비스",
-        "화재 예방 컨설팅",
-        "신속한 보험금 지급",
-      ],
-      discounts: ["스프링클러 설치 10%", "장기계약 12%", "아파트 거주 8%"],
-      color: "#DC2626",
+      specialties: ['24시간 긴급출동 서비스', '화재 예방 컨설팅', '신속한 보험금 지급'],
+      discounts: ['스프링클러 설치 10%', '장기계약 12%', '아파트 거주 8%'],
+      color: '#DC2626',
     },
     {
       id: 2,
-      company: "현대해상",
-      logo: "🔥",
+      company: '현대해상',
+      logo: '🔥',
       rating: 4.5,
       reviews: 2234,
       coverage: [
-        { name: "건물 화재", amount: "최대 1억원" },
-        { name: "가재도구", amount: "5천만원" },
-        { name: "배상책임", amount: "1억원" },
-        { name: "임시거주비", amount: "월 200만원" },
-        { name: "도난 보장", amount: "2천만원" },
+        { name: '건물 화재', amount: '최대 1억원' },
+        { name: '가재도구', amount: '5천만원' },
+        { name: '배상책임', amount: '1억원' },
+        { name: '임시거주비', amount: '월 200만원' },
+        { name: '도난 보장', amount: '2천만원' },
       ],
-      specialties: [
-        "AI 화재 감지 서비스 연계",
-        "전문 복구업체 연결",
-        "긴급 숙박비 지원",
-      ],
-      discounts: ["경보기 설치 8%", "온라인 가입 7%", "무사고 할인 10%"],
-      color: "#F59E0B",
+      specialties: ['AI 화재 감지 서비스 연계', '전문 복구업체 연결', '긴급 숙박비 지원'],
+      discounts: ['경보기 설치 8%', '온라인 가입 7%', '무사고 할인 10%'],
+      color: '#F59E0B',
     },
     {
       id: 3,
-      company: "DB손해보험",
-      logo: "🛡️",
+      company: 'DB손해보험',
+      logo: '🛡️',
       rating: 4.6,
       reviews: 2087,
       coverage: [
-        { name: "건물 화재", amount: "최대 1억원" },
-        { name: "가재도구", amount: "5천만원" },
-        { name: "배상책임", amount: "1억원" },
-        { name: "임시거주비", amount: "월 200만원" },
-        { name: "통합 보장", amount: "최대 2억원" },
+        { name: '건물 화재', amount: '최대 1억원' },
+        { name: '가재도구', amount: '5천만원' },
+        { name: '배상책임', amount: '1억원' },
+        { name: '임시거주비', amount: '월 200만원' },
+        { name: '통합 보장', amount: '최대 2억원' },
       ],
-      specialties: [
-        "화재 사고 전문 상담사",
-        "주택 안전진단 서비스",
-        "복구 비용 선지급",
-      ],
-      discounts: ["스프링클러 설치 10%", "장기계약 15%", "온라인 가입 5%"],
-      color: "#1E40AF",
+      specialties: ['화재 사고 전문 상담사', '주택 안전진단 서비스', '복구 비용 선지급'],
+      discounts: ['스프링클러 설치 10%', '장기계약 15%', '온라인 가입 5%'],
+      color: '#1E40AF',
     },
   ];
 
   const scrollToConsultation = () => {
-    window.location.href = "/#consultation";
+    window.location.href = '/#consultation';
   };
 
   return (
@@ -110,10 +98,7 @@ const CompareFire = () => {
       <div className="compare-hero">
         <div className="compare-hero-content">
           <h1>🏠 주택화재보험 한눈에 비교하기</h1>
-          <p>
-            내 집을 지키는 주택화재보험, 주요 보험사를 비교하고 안전한 보장을
-            선택하세요
-          </p>
+          <p>내 집을 지키는 주택화재보험, 주요 보험사를 비교하고 안전한 보장을 선택하세요</p>
         </div>
       </div>
 
@@ -127,9 +112,9 @@ const CompareFire = () => {
                 <button
                   key={option}
                   className={`filter-chip ${
-                    selectedFilters.coverage.includes(option) ? "active" : ""
+                    selectedFilters.coverage.includes(option) ? 'active' : ''
                   }`}
-                  onClick={() => toggleFilter("coverage", option)}
+                  onClick={() => toggleFilter('coverage', option)}
                 >
                   {option}
                 </button>
@@ -144,9 +129,9 @@ const CompareFire = () => {
                 <button
                   key={option}
                   className={`filter-chip ${
-                    selectedFilters.discounts.includes(option) ? "active" : ""
+                    selectedFilters.discounts.includes(option) ? 'active' : ''
                   }`}
-                  onClick={() => toggleFilter("discounts", option)}
+                  onClick={() => toggleFilter('discounts', option)}
                 >
                   {option}
                 </button>
@@ -159,18 +144,13 @@ const CompareFire = () => {
         <div className="comparison-grid">
           {insuranceData.map((insurance) => (
             <div key={insurance.id} className="insurance-card">
-              <div
-                className="card-header"
-                style={{ borderTopColor: insurance.color }}
-              >
+              <div className="card-header" style={{ borderTopColor: insurance.color }}>
                 <div className="company-info">
                   <span className="company-logo">{insurance.logo}</span>
                   <h2>{insurance.company}</h2>
                 </div>
                 <div className="rating">
-                  <span className="stars">
-                    {"⭐".repeat(Math.floor(insurance.rating))}
-                  </span>
+                  <span className="stars">{'⭐'.repeat(Math.floor(insurance.rating))}</span>
                   <span className="rating-text">
                     {insurance.rating} ({insurance.reviews.toLocaleString()})
                   </span>

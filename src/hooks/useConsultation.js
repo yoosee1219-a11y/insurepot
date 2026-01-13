@@ -3,8 +3,8 @@
  * 상담 신청 폼 제출을 처리
  */
 
-import { consultationService } from "../services";
-import { CONSULTATION_MESSAGES } from "../constants";
+import { consultationService } from '../services';
+import { CONSULTATION_MESSAGES } from '../constants';
 
 export function useConsultation() {
   const submitConsultation = async (formData) => {

@@ -3,7 +3,7 @@
  * Comments에서 사용되는 개별 댓글 아이템
  */
 
-import React from "react";
+import React from 'react';
 
 function CommentItem({
   comment,
@@ -17,17 +17,12 @@ function CommentItem({
     <div className="comment-item">
       <div className="comment-header">
         <span className="comment-author">{comment.author_name}</span>
-        <span className="comment-date">
-          {new Date(comment.created_at).toLocaleString()}
-        </span>
+        <span className="comment-date">{new Date(comment.created_at).toLocaleString()}</span>
       </div>
       <div className="comment-content">{comment.content}</div>
       <div className="comment-actions">
         {!showDeleteInput ? (
-          <button
-            onClick={() => onToggleDeleteInput(comment.id)}
-            className="btn-delete-toggle"
-          >
+          <button onClick={() => onToggleDeleteInput(comment.id)} className="btn-delete-toggle">
             삭제
           </button>
         ) : (
@@ -35,10 +30,8 @@ function CommentItem({
             <input
               type="password"
               placeholder="비밀번호"
-              value={deletePassword || ""}
-              onChange={(e) =>
-                onDeletePasswordChange(comment.id, e.target.value)
-              }
+              value={deletePassword || ''}
+              onChange={(e) => onDeletePasswordChange(comment.id, e.target.value)}
             />
             <button
               onClick={() => onDelete(comment.id, comment.author_password)}
@@ -46,10 +39,7 @@ function CommentItem({
             >
               확인
             </button>
-            <button
-              onClick={() => onToggleDeleteInput(comment.id)}
-              className="btn-cancel-delete"
-            >
+            <button onClick={() => onToggleDeleteInput(comment.id)} className="btn-cancel-delete">
               취소
             </button>
           </div>

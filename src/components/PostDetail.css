@@ -253,7 +253,7 @@
   color: #ef4444;
   padding: 0.2rem 0.4rem;
   border-radius: 4px;
-  font-family: "Courier New", monospace;
+  font-family: 'Courier New', monospace;
   font-size: 0.9em;
 }
 
@@ -290,7 +290,7 @@
 
 /* 이미지 정렬 스타일 (Admin 에디터와 동일) */
 .post-body img.image-align-left,
-.post-body img[data-align="left"] {
+.post-body img[data-align='left'] {
   float: left;
   margin-right: 1rem;
   margin-bottom: 0.5rem;
@@ -299,7 +299,7 @@
 }
 
 .post-body img.image-align-center,
-.post-body img[data-align="center"] {
+.post-body img[data-align='center'] {
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -307,7 +307,7 @@
 }
 
 .post-body img.image-align-right,
-.post-body img[data-align="right"] {
+.post-body img[data-align='right'] {
   float: right;
   margin-left: 1rem;
   margin-bottom: 0.5rem;

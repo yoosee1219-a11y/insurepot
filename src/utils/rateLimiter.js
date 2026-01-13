@@ -50,9 +50,9 @@ const generateIdentifier = (action) => {
     navigator.userAgent,
     navigator.language,
     window.screen?.colorDepth || 24,
-    (window.screen?.width || 1920) + "x" + (window.screen?.height || 1080),
+    (window.screen?.width || 1920) + 'x' + (window.screen?.height || 1080),
     new Date().getTimezoneOffset(),
-  ].join("|");
+  ].join('|');
 
   // 해시 생성 (간단한 해시)
   let hash = 0;
@@ -87,18 +87,12 @@ export const checkRateLimit = (action) => {
     return {
       allowed: false,
       retryAfter,
-      error: `너무 많은 시도가 있었습니다. ${Math.ceil(
-        retryAfter / 60
-      )}분 후에 다시 시도해주세요.`,
+      error: `너무 많은 시도가 있었습니다. ${Math.ceil(retryAfter / 60)}분 후에 다시 시도해주세요.`,
     };
   }
 
   // 기록이 없거나 시간 창이 지났으면 초기화
-  if (
-    !record ||
-    !record.firstAttempt ||
-    now - record.firstAttempt > config.windowMs
-  ) {
+  if (!record || !record.firstAttempt || now - record.firstAttempt > config.windowMs) {
     rateLimitStore.set(identifier, {
       attempts: 1,
       firstAttempt: now,
@@ -119,9 +113,7 @@ export const checkRateLimit = (action) => {
     return {
       allowed: false,
       retryAfter,
-      error: `너무 많은 시도가 있었습니다. ${Math.ceil(
-        retryAfter / 60
-      )}분 후에 다시 시도해주세요.`,
+      error: `너무 많은 시도가 있었습니다. ${Math.ceil(retryAfter / 60)}분 후에 다시 시도해주세요.`,
     };
   }
 
@@ -152,17 +144,14 @@ export const cleanupRateLimitStore = () => {
 
   for (const [key, record] of rateLimitStore.entries()) {
     // 차단도 풀렸고, 기록도 오래되었으면 삭제
-    if (
-      (!record.blockedUntil || now > record.blockedUntil) &&
-      now - record.firstAttempt > maxAge
-    ) {
+    if ((!record.blockedUntil || now > record.blockedUntil) && now - record.firstAttempt > maxAge) {
       rateLimitStore.delete(key);
     }
   }
 };
 
 // 1시간마다 자동 정리
-if (typeof window !== "undefined") {
+if (typeof window !== 'undefined') {
   setInterval(cleanupRateLimitStore, 60 * 60 * 1000);
 }
 

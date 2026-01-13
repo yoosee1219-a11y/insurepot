@@ -106,6 +106,7 @@ vercel
 ## 📊 Supabase 데이터베이스 구조
 
 ### posts 테이블
+
 - `id` (UUID) - 기본키
 - `title` (TEXT) - 제목
 - `category` (TEXT) - 카테고리
@@ -117,6 +118,7 @@ vercel
 - `updated_at` (TIMESTAMP) - 수정일
 
 ### consultations 테이블
+
 - `id` (UUID) - 기본키
 - `name` (TEXT) - 이름
 - `phone` (TEXT) - 연락처
@@ -137,39 +139,46 @@ vercel
 ## 📝 사용 방법
 
 ### 게시글 작성
+
 1. `/admin` 접속
 2. "콘텐츠 관리" 메뉴 선택
 3. 제목, 카테고리, 내용 입력
 4. "게시하기" 클릭
 
 ### 상담 문의 확인
+
 1. `/admin` 접속
 2. "상담 문의" 메뉴 선택
 3. 문의 내용 확인 및 상태 변경
 
 ### 게시글 삭제
+
 1. 콘텐츠 관리에서 삭제할 게시글 찾기
 2. "삭제" 버튼 클릭
 
 ## 🔒 보안 설정
 
 Supabase RLS(Row Level Security) 정책:
+
 - **게시글:** 발행된 글만 공개 조회 가능
 - **상담 문의:** 누구나 등록 가능, 조회는 제한
 
 ## 🐛 문제 해결
 
 ### Supabase 연결 오류
+
 1. `.env.local` 파일이 있는지 확인
 2. Supabase URL과 Key가 정확한지 확인
 3. 개발 서버 재시작 (`npm start`)
 
 ### 게시글이 표시되지 않음
+
 1. Supabase 대시보드에서 `posts` 테이블 확인
 2. `is_published`가 `true`인지 확인
 3. RLS 정책이 적용되었는지 확인
 
 ### 빌드 오류
+
 ```bash
 # node_modules 삭제 후 재설치
 rm -rf node_modules package-lock.json

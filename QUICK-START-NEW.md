@@ -34,6 +34,7 @@ C:\Users\woosol\OneDrive\Desktop\insurepot\.env.local
 ### 확인 방법:
 
 **PowerShell:**
+
 ```powershell
 cd C:\Users\woosol\OneDrive\Desktop\insurepot-project
 dir .env.local
@@ -54,6 +55,7 @@ REACT_APP_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
 ```
 
 ✅ 체크사항:
+
 - [ ] `REACT_APP_` 접두사 있음
 - [ ] `=` 양옆에 공백 없음
 - [ ] URL이 `https://`로 시작
@@ -97,12 +99,14 @@ npm start
 ### 단계 3: 페이지 확인
 
 ✅ **정상 작동:**
+
 - 보라색 그라데이션 배경 (히어로 섹션)
 - "어떤 보험을 찾으시나요?" 카드들
 - "보험 완벽 가이드" 섹션에 게시글 3개
 - 하단 상담 신청 폼
 
 ❌ **오류 발생:**
+
 - 흰 화면만 보임 → F12 → Console 탭 확인
 - "Failed to fetch" → 환경변수 확인
 - 게시글 0개 → Supabase 데이터 확인
@@ -141,6 +145,7 @@ npm start
 5. ✅ "상담 신청이 완료되었습니다!" 알림 확인
 
 **확인:**
+
 - Supabase 대시보드 → Table Editor → consultations
 - 방금 입력한 데이터가 있으면 성공!
 
@@ -166,6 +171,7 @@ npm start
 6. ✅ 성공 메시지 확인
 
 **확인:**
+
 - 메인 페이지(http://localhost:3000) 새로고침
 - 방금 작성한 게시글이 보이면 성공!
 
@@ -174,6 +180,7 @@ npm start
 ## 5️⃣ Vercel 배포 (선택, 5분)
 
 ### 준비물:
+
 - GitHub 계정
 - Vercel 계정 (무료)
 
@@ -227,6 +234,7 @@ Value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
 **원인:** 패키지 설치 안됨
 
 **해결:**
+
 ```bash
 npm install @supabase/supabase-js
 npm start
@@ -239,17 +247,20 @@ npm start
 **원인:** RLS 정책 문제 또는 데이터 없음
 
 **해결 1: 데이터 확인**
+
 - Supabase → Table Editor → posts
 - 데이터가 있나요?
 - `is_published`가 `true`인가요?
 
 **해결 2: RLS 비활성화 (테스트용)**
+
 ```sql
 -- SQL Editor에서 실행
 ALTER TABLE posts DISABLE ROW LEVEL SECURITY;
 ```
 
 테스트 후 다시 활성화:
+
 ```sql
 ALTER TABLE posts ENABLE ROW LEVEL SECURITY;
 ```
@@ -261,6 +272,7 @@ ALTER TABLE posts ENABLE ROW LEVEL SECURITY;
 **원인:** 환경변수가 잘못됨
 
 **해결:**
+
 1. Supabase → Settings → API
 2. **anon public** 키 복사 (service_role ❌)
 3. `.env.local` 파일 수정
@@ -274,11 +286,10 @@ ALTER TABLE posts ENABLE ROW LEVEL SECURITY;
 
 **해결:**
 프로젝트 루트에 `vercel.json` 파일 확인:
+
 ```json
 {
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
-  ]
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
 }
 ```
 
@@ -303,6 +314,7 @@ ALTER TABLE posts ENABLE ROW LEVEL SECURITY;
 ## 📚 다음 단계
 
 ### 추가 개발 아이디어:
+
 - [ ] 회원 가입/로그인 (Supabase Auth)
 - [ ] 이미지 업로드 (Supabase Storage)
 - [ ] 검색 기능
@@ -311,6 +323,7 @@ ALTER TABLE posts ENABLE ROW LEVEL SECURITY;
 - [ ] 이메일 알림
 
 ### 참고 문서:
+
 - [Supabase Auth 가이드](https://supabase.com/docs/guides/auth)
 - [Supabase Storage 가이드](https://supabase.com/docs/guides/storage)
 - [React Router 가이드](https://reactrouter.com/)
@@ -325,6 +338,7 @@ ALTER TABLE posts ENABLE ROW LEVEL SECURITY;
 4. **서버 재시작**
 
 그래도 안되면:
+
 - `.env.local` 파일 내용 확인
 - Supabase 테이블 데이터 확인
 - npm 캐시 삭제: `npm cache clean --force`

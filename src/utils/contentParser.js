@@ -15,26 +15,26 @@ export function extractTableOfContents(htmlContent) {
     const toc = [];
     const regex = /<h([1-6])\s+[^>]*id="([^"]+)"[^>]*>([^<]+)<\/h[1-6]>/gi;
     let match;
-    
+
     while ((match = regex.exec(htmlContent)) !== null) {
       const level = parseInt(match[1]);
       const id = match[2];
       const text = match[3].trim();
-      
+
       // h2, h3, h4만 목차에 포함
       if (level >= 2 && level <= 4) {
         toc.push({
           id,
           text,
-          level
+          level,
         });
       }
     }
-    
-    console.log("📚 추출된 목차:", toc);
+
+    console.log('📚 추출된 목차:', toc);
     return toc;
   } catch (error) {
-    console.error("목차 추출 오류:", error);
+    console.error('목차 추출 오류:', error);
     return [];
   }
 }
@@ -45,13 +45,13 @@ export function extractTableOfContents(htmlContent) {
  * @returns {string} id가 추가된 HTML 콘텐츠
  */
 export function addIdsToHeadings(htmlContent) {
-  if (!htmlContent) return "";
+  if (!htmlContent) return '';
 
   try {
     // 정규식으로 제목 태그에 ID 추가
     let processedContent = htmlContent;
     let headingIndex = 0;
-    
+
     // h1~h6 태그 찾아서 ID 추가
     processedContent = processedContent.replace(
       /<h([1-6])(\s+[^>]*)?>([^<]+)<\/h[1-6]>/gi,
@@ -65,10 +65,10 @@ export function addIdsToHeadings(htmlContent) {
         return `<h${level}${attrs} id="${id}">${text}</h${level}>`;
       }
     );
-    
+
     return processedContent;
   } catch (error) {
-    console.error("HTML 파싱 오류:", error);
+    console.error('HTML 파싱 오류:', error);
     return htmlContent;
   }
 }
@@ -79,9 +79,9 @@ export function addIdsToHeadings(htmlContent) {
  * @returns {string} HTML 포맷 텍스트
  */
 export function textToHtml(text) {
-  if (!text) return "";
+  if (!text) return '';
 
-  const lines = text.split("\n");
+  const lines = text.split('\n');
   const htmlLines = [];
   let inList = false;
 
@@ -91,43 +91,43 @@ export function textToHtml(text) {
     if (!trimmedLine) {
       // 빈 줄은 리스트 종료
       if (inList) {
-        htmlLines.push("</ul>");
+        htmlLines.push('</ul>');
         inList = false;
       }
       return;
     }
 
     // 제목 형식 감지 (마크다운 스타일)
-    if (trimmedLine.startsWith("####")) {
+    if (trimmedLine.startsWith('####')) {
       if (inList) {
-        htmlLines.push("</ul>");
+        htmlLines.push('</ul>');
         inList = false;
       }
-      htmlLines.push(`<h4>${trimmedLine.replace(/^####\s*/, "")}</h4>`);
+      htmlLines.push(`<h4>${trimmedLine.replace(/^####\s*/, '')}</h4>`);
       return;
     }
-    if (trimmedLine.startsWith("###")) {
+    if (trimmedLine.startsWith('###')) {
       if (inList) {
-        htmlLines.push("</ul>");
+        htmlLines.push('</ul>');
         inList = false;
       }
-      htmlLines.push(`<h3>${trimmedLine.replace(/^###\s*/, "")}</h3>`);
+      htmlLines.push(`<h3>${trimmedLine.replace(/^###\s*/, '')}</h3>`);
       return;
     }
-    if (trimmedLine.startsWith("##")) {
+    if (trimmedLine.startsWith('##')) {
       if (inList) {
-        htmlLines.push("</ul>");
+        htmlLines.push('</ul>');
         inList = false;
       }
-      htmlLines.push(`<h3>${trimmedLine.replace(/^##\s*/, "")}</h3>`);
+      htmlLines.push(`<h3>${trimmedLine.replace(/^##\s*/, '')}</h3>`);
       return;
     }
-    if (trimmedLine.startsWith("#")) {
+    if (trimmedLine.startsWith('#')) {
       if (inList) {
-        htmlLines.push("</ul>");
+        htmlLines.push('</ul>');
         inList = false;
       }
-      htmlLines.push(`<h2>${trimmedLine.replace(/^#\s*/, "")}</h2>`);
+      htmlLines.push(`<h2>${trimmedLine.replace(/^#\s*/, '')}</h2>`);
       return;
     }
 
@@ -135,7 +135,7 @@ export function textToHtml(text) {
     const numberedTitleMatch = trimmedLine.match(/^(\d+)\.\s+(.+)$/);
     if (numberedTitleMatch && trimmedLine.length > 10) {
       if (inList) {
-        htmlLines.push("</ul>");
+        htmlLines.push('</ul>');
         inList = false;
       }
       htmlLines.push(`<h3>${numberedTitleMatch[2]}</h3>`);
@@ -144,27 +144,25 @@ export function textToHtml(text) {
 
     // 특정 키워드로 시작하는 제목 감지
     const titleKeywords = [
-      "보장내용",
-      "가입조건",
-      "주의사항",
-      "특징",
-      "장점",
-      "단점",
-      "보험료",
-      "보상범위",
-      "청구방법",
-      "필요서류",
-      "가입대상",
-      "보장기간",
+      '보장내용',
+      '가입조건',
+      '주의사항',
+      '특징',
+      '장점',
+      '단점',
+      '보험료',
+      '보상범위',
+      '청구방법',
+      '필요서류',
+      '가입대상',
+      '보장기간',
     ];
 
-    const startsWithKeyword = titleKeywords.some((keyword) =>
-      trimmedLine.startsWith(keyword)
-    );
+    const startsWithKeyword = titleKeywords.some((keyword) => trimmedLine.startsWith(keyword));
 
     if (startsWithKeyword && trimmedLine.length < 30) {
       if (inList) {
-        htmlLines.push("</ul>");
+        htmlLines.push('</ul>');
         inList = false;
       }
       htmlLines.push(`<h3>${trimmedLine}</h3>`);
@@ -172,18 +170,18 @@ export function textToHtml(text) {
     }
 
     // 리스트 형식 감지
-    if (trimmedLine.startsWith("- ") || trimmedLine.startsWith("* ")) {
+    if (trimmedLine.startsWith('- ') || trimmedLine.startsWith('* ')) {
       if (!inList) {
-        htmlLines.push("<ul>");
+        htmlLines.push('<ul>');
         inList = true;
       }
-      htmlLines.push(`<li>${trimmedLine.replace(/^[-*]\s*/, "")}</li>`);
+      htmlLines.push(`<li>${trimmedLine.replace(/^[-*]\s*/, '')}</li>`);
       return;
     }
 
     // 일반 텍스트
     if (inList) {
-      htmlLines.push("</ul>");
+      htmlLines.push('</ul>');
       inList = false;
     }
     htmlLines.push(`<p>${trimmedLine}</p>`);
@@ -191,10 +189,10 @@ export function textToHtml(text) {
 
   // 마지막 리스트 닫기
   if (inList) {
-    htmlLines.push("</ul>");
+    htmlLines.push('</ul>');
   }
 
-  return htmlLines.join("");
+  return htmlLines.join('');
 }
 
 /**
@@ -211,7 +209,7 @@ export function scrollToSection(targetId) {
 
     window.scrollTo({
       top: offsetPosition,
-      behavior: "smooth",
+      behavior: 'smooth',
     });
   }
 }

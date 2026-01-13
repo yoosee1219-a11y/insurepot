@@ -3,16 +3,12 @@
  * 로그인, 비밀번호 변경 등 인증 관련 작업을 처리
  */
 
-import bcrypt from "bcryptjs";
-import { supabase } from "../supabaseClient";
-import {
-  handleApiError,
-  createSuccessResult,
-  checkSupabaseResponse,
-} from "../utils/errorHandler";
-import { validateUsername, validatePassword } from "../utils/validator";
-import { checkRateLimit, resetRateLimit } from "../utils/rateLimiter";
-import { AUTH_MESSAGES } from "../constants";
+import bcrypt from 'bcryptjs';
+import { supabase } from '../supabaseClient';
+import { handleApiError, createSuccessResult, checkSupabaseResponse } from '../utils/errorHandler';
+import { validateUsername, validatePassword } from '../utils/validator';
+import { checkRateLimit, resetRateLimit } from '../utils/rateLimiter';
+import { AUTH_MESSAGES } from '../constants';
 
 export const authService = {
   /**
@@ -24,7 +20,7 @@ export const authService = {
   login: async (username, password) => {
     try {
       // 1. Rate Limiting 체크
-      const rateLimitResult = checkRateLimit("LOGIN");
+      const rateLimitResult = checkRateLimit('LOGIN');
       if (!rateLimitResult.allowed) {
         return {
           success: false,
@@ -60,9 +56,9 @@ export const authService = {
 
       // 3. Supabase에서 관리자 정보 가져오기
       const response = await supabase
-        .from("admin_users")
-        .select("username, password_hash")
-        .eq("username", username)
+        .from('admin_users')
+        .select('username, password_hash')
+        .eq('username', username)
         .single();
 
       if (response.error || !response.data) {
@@ -73,10 +69,7 @@ export const authService = {
       }
 
       // 4. 비밀번호 확인 (해시 비교)
-      const isPasswordValid = await bcrypt.compare(
-        password,
-        response.data.password_hash
-      );
+      const isPasswordValid = await bcrypt.compare(password, response.data.password_hash);
 
       if (!isPasswordValid) {
         return {
@@ -94,7 +87,7 @@ export const authService = {
       const loginToken = btoa(JSON.stringify(tokenData));
 
       // 6. Rate Limit 초기화 (로그인 성공)
-      resetRateLimit("LOGIN");
+      resetRateLimit('LOGIN');
 
       return createSuccessResult({
         token: loginToken,
@@ -120,7 +113,7 @@ export const authService = {
       if (!loginResult.success) {
         return {
           success: false,
-          error: "현재 비밀번호가 올바르지 않습니다.",
+          error: '현재 비밀번호가 올바르지 않습니다.',
         };
       }
 
@@ -129,9 +122,9 @@ export const authService = {
 
       // 3. 비밀번호 업데이트
       const response = await supabase
-        .from("admin_users")
+        .from('admin_users')
         .update({ password_hash: newPasswordHash })
-        .eq("username", username);
+        .eq('username', username);
 
       checkSupabaseResponse(response, AUTH_MESSAGES.PASSWORD_CHANGE_ERROR);
 
@@ -147,12 +140,12 @@ export const authService = {
    */
   logout: () => {
     try {
-      sessionStorage.removeItem("adminToken");
-      sessionStorage.removeItem("adminUser");
+      sessionStorage.removeItem('adminToken');
+      sessionStorage.removeItem('adminUser');
 
       return createSuccessResult(null);
     } catch (error) {
-      return handleApiError(error, "로그아웃에 실패했습니다");
+      return handleApiError(error, '로그아웃에 실패했습니다');
     }
   },
 
@@ -161,8 +154,8 @@ export const authService = {
    * @returns {boolean}
    */
   isAuthenticated: () => {
-    const token = sessionStorage.getItem("adminToken");
-    const user = sessionStorage.getItem("adminUser");
+    const token = sessionStorage.getItem('adminToken');
+    const user = sessionStorage.getItem('adminUser');
     return !!(token && user);
   },
 
@@ -171,8 +164,8 @@ export const authService = {
    * @returns {Object|null}
    */
   getCurrentUser: () => {
-    const user = sessionStorage.getItem("adminUser");
-    const token = sessionStorage.getItem("adminToken");
+    const user = sessionStorage.getItem('adminUser');
+    const token = sessionStorage.getItem('adminToken');
 
     if (user && token) {
       return { username: user, token };

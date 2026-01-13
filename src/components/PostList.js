@@ -3,14 +3,14 @@
  * 전체 게시글 목록, 카테고리 필터링, 검색, 정렬, 페이지네이션 지원
  */
 
-import React, { useState, useEffect, useMemo, useCallback } from "react";
-import { Link, useSearchParams } from "react-router-dom";
-import Header from "./Header";
-import Footer from "./Footer";
-import PostCard from "./PostCard";
-import "./PostList.css";
-import { postService } from "../services";
-import { POST_CATEGORY_LIST } from "../constants";
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
+import Header from './Header';
+import Footer from './Footer';
+import PostCard from './PostCard';
+import './PostList.css';
+import { postService } from '../services';
+import { POST_CATEGORY_LIST } from '../constants';
 
 function PostList() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -18,13 +18,9 @@ function PostList() {
   // 상태 관리
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [selectedCategory, setSelectedCategory] = useState(
-    searchParams.get("category") || "전체"
-  );
-  const [sortBy, setSortBy] = useState("latest"); // latest, popular
-  const [searchQuery, setSearchQuery] = useState(
-    searchParams.get("search") || ""
-  );
+  const [selectedCategory, setSelectedCategory] = useState(searchParams.get('category') || '전체');
+  const [sortBy, setSortBy] = useState('latest'); // latest, popular
+  const [searchQuery, setSearchQuery] = useState(searchParams.get('search') || '');
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 12;
 
@@ -37,7 +33,7 @@ function PostList() {
       if (result.success) {
         setPosts(result.data);
       } else {
-        console.error("게시글 로딩 실패:", result.error);
+        console.error('게시글 로딩 실패:', result.error);
       }
 
       setLoading(false);
@@ -48,8 +44,8 @@ function PostList() {
 
   // URL 파라미터 동기화
   useEffect(() => {
-    const category = searchParams.get("category");
-    const search = searchParams.get("search");
+    const category = searchParams.get('category');
+    const search = searchParams.get('search');
 
     if (category && category !== selectedCategory) {
       setSelectedCategory(category);
@@ -76,7 +72,7 @@ function PostList() {
     let result = [...posts];
 
     // 카테고리 필터링
-    if (selectedCategory !== "전체") {
+    if (selectedCategory !== '전체') {
       result = result.filter((post) => post.category === selectedCategory);
     }
 
@@ -91,9 +87,9 @@ function PostList() {
     }
 
     // 정렬
-    if (sortBy === "latest") {
+    if (sortBy === 'latest') {
       result.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
-    } else if (sortBy === "popular") {
+    } else if (sortBy === 'popular') {
       result.sort((a, b) => (b.view_count || 0) - (a.view_count || 0));
     }
 
@@ -104,10 +100,7 @@ function PostList() {
   const totalPages = Math.ceil(filteredAndSortedPosts.length / postsPerPage);
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = filteredAndSortedPosts.slice(
-    indexOfFirstPost,
-    indexOfLastPost
-  );
+  const currentPosts = filteredAndSortedPosts.slice(indexOfFirstPost, indexOfLastPost);
 
   // 카테고리 변경 핸들러 (useCallback으로 최적화)
   const handleCategoryChange = useCallback(
@@ -116,10 +109,10 @@ function PostList() {
       setCurrentPage(1);
 
       // URL 파라미터 업데이트
-      if (category === "전체") {
-        searchParams.delete("category");
+      if (category === '전체') {
+        searchParams.delete('category');
       } else {
-        searchParams.set("category", category);
+        searchParams.set('category', category);
       }
       setSearchParams(searchParams);
     },
@@ -129,7 +122,7 @@ function PostList() {
   // 페이지 변경 핸들러 (useCallback으로 최적화)
   const handlePageChange = useCallback((pageNumber) => {
     setCurrentPage(pageNumber);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
   // 검색 핸들러 (useCallback으로 최적화)
@@ -141,9 +134,9 @@ function PostList() {
 
       // URL 파라미터 업데이트
       if (newQuery.trim()) {
-        searchParams.set("search", newQuery.trim());
+        searchParams.set('search', newQuery.trim());
       } else {
-        searchParams.delete("search");
+        searchParams.delete('search');
       }
       setSearchParams(searchParams);
     },
@@ -167,10 +160,8 @@ function PostList() {
               <h3>📂 카테고리</h3>
               <div className="category-filter">
                 <button
-                  className={`category-btn ${
-                    selectedCategory === "전체" ? "active" : ""
-                  }`}
-                  onClick={() => handleCategoryChange("전체")}
+                  className={`category-btn ${selectedCategory === '전체' ? 'active' : ''}`}
+                  onClick={() => handleCategoryChange('전체')}
                 >
                   <span className="category-name">전체</span>
                   <span className="category-count">{posts.length}</span>
@@ -179,15 +170,11 @@ function PostList() {
                 {POST_CATEGORY_LIST.map((category) => (
                   <button
                     key={category}
-                    className={`category-btn ${
-                      selectedCategory === category ? "active" : ""
-                    }`}
+                    className={`category-btn ${selectedCategory === category ? 'active' : ''}`}
                     onClick={() => handleCategoryChange(category)}
                   >
                     <span className="category-name">{category}</span>
-                    <span className="category-count">
-                      {categoryCounts[category] || 0}
-                    </span>
+                    <span className="category-count">{categoryCounts[category] || 0}</span>
                   </button>
                 ))}
               </div>
@@ -210,11 +197,7 @@ function PostList() {
             {/* 헤더 */}
             <div className="post-list-header">
               <div className="header-left">
-                <h1>
-                  {selectedCategory === "전체"
-                    ? "전체 게시글"
-                    : selectedCategory}
-                </h1>
+                <h1>{selectedCategory === '전체' ? '전체 게시글' : selectedCategory}</h1>
                 <p className="post-count">
                   총 <strong>{filteredAndSortedPosts.length}</strong>개의 글
                 </p>
@@ -223,18 +206,14 @@ function PostList() {
               <div className="header-right">
                 <div className="sort-buttons">
                   <button
-                    className={`sort-btn ${
-                      sortBy === "latest" ? "active" : ""
-                    }`}
-                    onClick={() => handleSortChange("latest")}
+                    className={`sort-btn ${sortBy === 'latest' ? 'active' : ''}`}
+                    onClick={() => handleSortChange('latest')}
                   >
                     최신순
                   </button>
                   <button
-                    className={`sort-btn ${
-                      sortBy === "popular" ? "active" : ""
-                    }`}
-                    onClick={() => handleSortChange("popular")}
+                    className={`sort-btn ${sortBy === 'popular' ? 'active' : ''}`}
+                    onClick={() => handleSortChange('popular')}
                   >
                     인기순
                   </button>
@@ -258,16 +237,16 @@ function PostList() {
                 <p>
                   {searchQuery
                     ? `"${searchQuery}"에 대한 검색 결과가 없습니다.`
-                    : selectedCategory !== "전체"
-                    ? `${selectedCategory} 카테고리에 게시글이 없습니다.`
-                    : "첫 번째 게시글을 작성해보세요!"}
+                    : selectedCategory !== '전체'
+                      ? `${selectedCategory} 카테고리에 게시글이 없습니다.`
+                      : '첫 번째 게시글을 작성해보세요!'}
                 </p>
-                {(searchQuery || selectedCategory !== "전체") && (
+                {(searchQuery || selectedCategory !== '전체') && (
                   <button
                     className="btn-reset"
                     onClick={() => {
-                      setSearchQuery("");
-                      handleCategoryChange("전체");
+                      setSearchQuery('');
+                      handleCategoryChange('전체');
                     }}
                   >
                     전체 보기
@@ -304,14 +283,13 @@ function PostList() {
                         if (
                           pageNumber === 1 ||
                           pageNumber === totalPages ||
-                          (pageNumber >= currentPage - 2 &&
-                            pageNumber <= currentPage + 2)
+                          (pageNumber >= currentPage - 2 && pageNumber <= currentPage + 2)
                         ) {
                           return (
                             <button
                               key={pageNumber}
                               className={`pagination-number ${
-                                currentPage === pageNumber ? "active" : ""
+                                currentPage === pageNumber ? 'active' : ''
                               }`}
                               onClick={() => handlePageChange(pageNumber)}
                             >

@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import "./CompareHealth.css";
+import React, { useState } from 'react';
+import './CompareHealth.css';
 
 const CompareHealth = () => {
   const [selectedFilters, setSelectedFilters] = useState({
@@ -8,21 +8,21 @@ const CompareHealth = () => {
   });
 
   const coverageOptions = [
-    "입원비 보장",
-    "통원비 보장",
-    "비급여 항목",
-    "MRI/CT 보장",
-    "도수치료",
-    "한방치료",
+    '입원비 보장',
+    '통원비 보장',
+    '비급여 항목',
+    'MRI/CT 보장',
+    '도수치료',
+    '한방치료',
   ];
 
   const discountOptions = [
-    "건강검진 완료",
-    "비흡연자",
-    "온라인 가입",
-    "체질량지수 우수",
-    "혈압정상",
-    "장기계약",
+    '건강검진 완료',
+    '비흡연자',
+    '온라인 가입',
+    '체질량지수 우수',
+    '혈압정상',
+    '장기계약',
   ];
 
   const toggleFilter = (category, item) => {
@@ -37,71 +37,63 @@ const CompareHealth = () => {
   const insuranceData = [
     {
       id: 1,
-      company: "삼성생명",
-      logo: "🏥",
+      company: '삼성생명',
+      logo: '🏥',
       rating: 4.6,
       reviews: 2341,
       coverage: [
-        { name: "입원의료비", amount: "최대 5천만원" },
-        { name: "통원의료비", amount: "1일 30만원" },
-        { name: "비급여 보장", amount: "실제 발생비용" },
-        { name: "MRI/CT 보장", amount: "회당 100만원" },
-        { name: "도수치료", amount: "연 350만원" },
+        { name: '입원의료비', amount: '최대 5천만원' },
+        { name: '통원의료비', amount: '1일 30만원' },
+        { name: '비급여 보장', amount: '실제 발생비용' },
+        { name: 'MRI/CT 보장', amount: '회당 100만원' },
+        { name: '도수치료', amount: '연 350만원' },
       ],
       specialties: [
-        "24시간 의료상담 서비스",
-        "전국 병원 네트워크 연계",
-        "신속한 보험금 지급 (평균 3일)",
+        '24시간 의료상담 서비스',
+        '전국 병원 네트워크 연계',
+        '신속한 보험금 지급 (평균 3일)',
       ],
-      discounts: ["건강검진 완료 5%", "비흡연자 10%", "온라인 가입 7%"],
-      color: "#DC2626",
+      discounts: ['건강검진 완료 5%', '비흡연자 10%', '온라인 가입 7%'],
+      color: '#DC2626',
     },
     {
       id: 2,
-      company: "현대라이프",
-      logo: "💊",
+      company: '현대라이프',
+      logo: '💊',
       rating: 4.5,
       reviews: 1876,
       coverage: [
-        { name: "입원의료비", amount: "최대 5천만원" },
-        { name: "통원의료비", amount: "1일 30만원" },
-        { name: "비급여 보장", amount: "실제 발생비용" },
-        { name: "MRI/CT 보장", amount: "회당 100만원" },
-        { name: "한방치료", amount: "연 200만원" },
+        { name: '입원의료비', amount: '최대 5천만원' },
+        { name: '통원의료비', amount: '1일 30만원' },
+        { name: '비급여 보장', amount: '실제 발생비용' },
+        { name: 'MRI/CT 보장', amount: '회당 100만원' },
+        { name: '한방치료', amount: '연 200만원' },
       ],
-      specialties: [
-        "AI 기반 맞춤 건강관리",
-        "건강검진 연계 서비스",
-        "모바일 간편 청구 시스템",
-      ],
-      discounts: ["체질량지수 우수 8%", "혈압정상 5%", "장기계약 10%"],
-      color: "#059669",
+      specialties: ['AI 기반 맞춤 건강관리', '건강검진 연계 서비스', '모바일 간편 청구 시스템'],
+      discounts: ['체질량지수 우수 8%', '혈압정상 5%', '장기계약 10%'],
+      color: '#059669',
     },
     {
       id: 3,
-      company: "KB손해보험",
-      logo: "⚕️",
+      company: 'KB손해보험',
+      logo: '⚕️',
       rating: 4.4,
       reviews: 1654,
       coverage: [
-        { name: "입원의료비", amount: "최대 5천만원" },
-        { name: "통원의료비", amount: "1일 30만원" },
-        { name: "비급여 보장", amount: "실제 발생비용" },
-        { name: "MRI/CT 보장", amount: "회당 100만원" },
-        { name: "도수/한방 통합", amount: "연 500만원" },
+        { name: '입원의료비', amount: '최대 5천만원' },
+        { name: '통원의료비', amount: '1일 30만원' },
+        { name: '비급여 보장', amount: '실제 발생비용' },
+        { name: 'MRI/CT 보장', amount: '회당 100만원' },
+        { name: '도수/한방 통합', amount: '연 500만원' },
       ],
-      specialties: [
-        "프리미엄 건강검진 제공",
-        "전문의 2차 소견 서비스",
-        "치료병원 추천 서비스",
-      ],
-      discounts: ["건강검진 완료 7%", "비흡연자 10%", "온라인 가입 5%"],
-      color: "#1E40AF",
+      specialties: ['프리미엄 건강검진 제공', '전문의 2차 소견 서비스', '치료병원 추천 서비스'],
+      discounts: ['건강검진 완료 7%', '비흡연자 10%', '온라인 가입 5%'],
+      color: '#1E40AF',
     },
   ];
 
   const scrollToConsultation = () => {
-    window.location.href = "/#consultation";
+    window.location.href = '/#consultation';
   };
 
   return (
@@ -110,10 +102,7 @@ const CompareHealth = () => {
       <div className="compare-hero">
         <div className="compare-hero-content">
           <h1>🏥 실손보험 한눈에 비교하기</h1>
-          <p>
-            주요 보험사의 실손보험을 비교하고 나에게 맞는 의료비 보장을
-            찾아보세요
-          </p>
+          <p>주요 보험사의 실손보험을 비교하고 나에게 맞는 의료비 보장을 찾아보세요</p>
         </div>
       </div>
 
@@ -127,9 +116,9 @@ const CompareHealth = () => {
                 <button
                   key={option}
                   className={`filter-chip ${
-                    selectedFilters.coverage.includes(option) ? "active" : ""
+                    selectedFilters.coverage.includes(option) ? 'active' : ''
                   }`}
-                  onClick={() => toggleFilter("coverage", option)}
+                  onClick={() => toggleFilter('coverage', option)}
                 >
                   {option}
                 </button>
@@ -144,9 +133,9 @@ const CompareHealth = () => {
                 <button
                   key={option}
                   className={`filter-chip ${
-                    selectedFilters.discounts.includes(option) ? "active" : ""
+                    selectedFilters.discounts.includes(option) ? 'active' : ''
                   }`}
-                  onClick={() => toggleFilter("discounts", option)}
+                  onClick={() => toggleFilter('discounts', option)}
                 >
                   {option}
                 </button>
@@ -159,18 +148,13 @@ const CompareHealth = () => {
         <div className="comparison-grid">
           {insuranceData.map((insurance) => (
             <div key={insurance.id} className="insurance-card">
-              <div
-                className="card-header"
-                style={{ borderTopColor: insurance.color }}
-              >
+              <div className="card-header" style={{ borderTopColor: insurance.color }}>
                 <div className="company-info">
                   <span className="company-logo">{insurance.logo}</span>
                   <h2>{insurance.company}</h2>
                 </div>
                 <div className="rating">
-                  <span className="stars">
-                    {"⭐".repeat(Math.floor(insurance.rating))}
-                  </span>
+                  <span className="stars">{'⭐'.repeat(Math.floor(insurance.rating))}</span>
                   <span className="rating-text">
                     {insurance.rating} ({insurance.reviews.toLocaleString()})
                   </span>

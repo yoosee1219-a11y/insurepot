@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import "./CompareFamily.css";
+import React, { useState } from 'react';
+import './CompareFamily.css';
 
 const CompareFamily = () => {
   const [selectedFilters, setSelectedFilters] = useState({
@@ -8,21 +8,21 @@ const CompareFamily = () => {
   });
 
   const coverageOptions = [
-    "배우자 보장",
-    "자녀 보장",
-    "부모님 보장",
-    "온가족 통합",
-    "질병입원",
-    "수술비",
+    '배우자 보장',
+    '자녀 보장',
+    '부모님 보장',
+    '온가족 통합',
+    '질병입원',
+    '수술비',
   ];
 
   const discountOptions = [
-    "가족 단위 가입",
-    "건강가족 할인",
-    "다자녀 할인",
-    "온라인 가입",
-    "장기계약",
-    "건강검진 완료",
+    '가족 단위 가입',
+    '건강가족 할인',
+    '다자녀 할인',
+    '온라인 가입',
+    '장기계약',
+    '건강검진 완료',
   ];
 
   const toggleFilter = (category, item) => {
@@ -37,71 +37,59 @@ const CompareFamily = () => {
   const insuranceData = [
     {
       id: 1,
-      company: "삼성생명",
-      logo: "👨‍👩‍👧‍👦",
+      company: '삼성생명',
+      logo: '👨‍👩‍👧‍👦',
       rating: 4.7,
       reviews: 3125,
       coverage: [
-        { name: "질병입원", amount: "1일당 5만원" },
-        { name: "상해입원", amount: "1일당 5만원" },
-        { name: "수술비", amount: "최대 1천만원" },
-        { name: "진단비", amount: "최대 3천만원" },
-        { name: "가족통합 보장", amount: "최대 4인" },
+        { name: '질병입원', amount: '1일당 5만원' },
+        { name: '상해입원', amount: '1일당 5만원' },
+        { name: '수술비', amount: '최대 1천만원' },
+        { name: '진단비', amount: '최대 3천만원' },
+        { name: '가족통합 보장', amount: '최대 4인' },
       ],
-      specialties: [
-        "온가족 한번에 보장 설계",
-        "자녀 성인까지 자동 갱신",
-        "가족 건강관리 서비스",
-      ],
-      discounts: ["가족 단위 가입 15%", "다자녀 할인 10%", "건강검진 할인 5%"],
-      color: "#7C3AED",
+      specialties: ['온가족 한번에 보장 설계', '자녀 성인까지 자동 갱신', '가족 건강관리 서비스'],
+      discounts: ['가족 단위 가입 15%', '다자녀 할인 10%', '건강검진 할인 5%'],
+      color: '#7C3AED',
     },
     {
       id: 2,
-      company: "현대라이프",
-      logo: "💜",
+      company: '현대라이프',
+      logo: '💜',
       rating: 4.5,
       reviews: 2876,
       coverage: [
-        { name: "질병입원", amount: "1일당 5만원" },
-        { name: "상해입원", amount: "1일당 5만원" },
-        { name: "수술비", amount: "최대 1천만원" },
-        { name: "진단비", amount: "최대 3천만원" },
-        { name: "가족통합 보장", amount: "최대 5인" },
+        { name: '질병입원', amount: '1일당 5만원' },
+        { name: '상해입원', amount: '1일당 5만원' },
+        { name: '수술비', amount: '최대 1천만원' },
+        { name: '진단비', amount: '최대 3천만원' },
+        { name: '가족통합 보장', amount: '최대 5인' },
       ],
-      specialties: [
-        "맞춤형 가족 보장 설계",
-        "임신/출산 특별 보장",
-        "가족 헬스케어 앱 제공",
-      ],
-      discounts: ["건강가족 할인 12%", "온라인 가입 7%", "장기계약 10%"],
-      color: "#EC4899",
+      specialties: ['맞춤형 가족 보장 설계', '임신/출산 특별 보장', '가족 헬스케어 앱 제공'],
+      discounts: ['건강가족 할인 12%', '온라인 가입 7%', '장기계약 10%'],
+      color: '#EC4899',
     },
     {
       id: 3,
-      company: "KB손해보험",
-      logo: "❤️",
+      company: 'KB손해보험',
+      logo: '❤️',
       rating: 4.6,
       reviews: 2543,
       coverage: [
-        { name: "질병입원", amount: "1일당 5만원" },
-        { name: "상해입원", amount: "1일당 5만원" },
-        { name: "수술비", amount: "최대 1천만원" },
-        { name: "진단비", amount: "최대 3천만원" },
-        { name: "가족통합 보장", amount: "최대 6인" },
+        { name: '질병입원', amount: '1일당 5만원' },
+        { name: '상해입원', amount: '1일당 5만원' },
+        { name: '수술비', amount: '최대 1천만원' },
+        { name: '진단비', amount: '최대 3천만원' },
+        { name: '가족통합 보장', amount: '최대 6인' },
       ],
-      specialties: [
-        "세대 간 보장 연계 가능",
-        "가족 전용 상담 서비스",
-        "가족 건강검진 지원",
-      ],
-      discounts: ["가족 단위 가입 15%", "다자녀 할인 12%", "온라인 가입 5%"],
-      color: "#F59E0B",
+      specialties: ['세대 간 보장 연계 가능', '가족 전용 상담 서비스', '가족 건강검진 지원'],
+      discounts: ['가족 단위 가입 15%', '다자녀 할인 12%', '온라인 가입 5%'],
+      color: '#F59E0B',
     },
   ];
 
   const scrollToConsultation = () => {
-    window.location.href = "/#consultation";
+    window.location.href = '/#consultation';
   };
 
   return (
@@ -110,10 +98,7 @@ const CompareFamily = () => {
       <div className="compare-hero">
         <div className="compare-hero-content">
           <h1>👨‍👩‍👧‍👦 가족보험 한눈에 비교하기</h1>
-          <p>
-            온가족을 하나로 보장하는 가족보험을 비교하고 최적의 보장을
-            찾아보세요
-          </p>
+          <p>온가족을 하나로 보장하는 가족보험을 비교하고 최적의 보장을 찾아보세요</p>
         </div>
       </div>
 
@@ -127,9 +112,9 @@ const CompareFamily = () => {
                 <button
                   key={option}
                   className={`filter-chip ${
-                    selectedFilters.coverage.includes(option) ? "active" : ""
+                    selectedFilters.coverage.includes(option) ? 'active' : ''
                   }`}
-                  onClick={() => toggleFilter("coverage", option)}
+                  onClick={() => toggleFilter('coverage', option)}
                 >
                   {option}
                 </button>
@@ -144,9 +129,9 @@ const CompareFamily = () => {
                 <button
                   key={option}
                   className={`filter-chip ${
-                    selectedFilters.discounts.includes(option) ? "active" : ""
+                    selectedFilters.discounts.includes(option) ? 'active' : ''
                   }`}
-                  onClick={() => toggleFilter("discounts", option)}
+                  onClick={() => toggleFilter('discounts', option)}
                 >
                   {option}
                 </button>
@@ -159,18 +144,13 @@ const CompareFamily = () => {
         <div className="comparison-grid">
           {insuranceData.map((insurance) => (
             <div key={insurance.id} className="insurance-card">
-              <div
-                className="card-header"
-                style={{ borderTopColor: insurance.color }}
-              >
+              <div className="card-header" style={{ borderTopColor: insurance.color }}>
                 <div className="company-info">
                   <span className="company-logo">{insurance.logo}</span>
                   <h2>{insurance.company}</h2>
                 </div>
                 <div className="rating">
-                  <span className="stars">
-                    {"⭐".repeat(Math.floor(insurance.rating))}
-                  </span>
+                  <span className="stars">{'⭐'.repeat(Math.floor(insurance.rating))}</span>
                   <span className="rating-text">
                     {insurance.rating} ({insurance.reviews.toLocaleString()})
                   </span>

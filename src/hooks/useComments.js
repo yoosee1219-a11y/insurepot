@@ -3,16 +3,11 @@
  * 댓글 조회, 작성, 삭제를 처리
  */
 
-import { useState, useEffect, useCallback } from "react";
-import bcrypt from "bcryptjs";
-import { commentService } from "../services";
-import { COMMENT_FORM_DEFAULTS, COMMENT_MESSAGES } from "../constants";
-import {
-  validateName,
-  validatePassword,
-  validateCommentContent,
-  checkRateLimit,
-} from "../utils";
+import { useState, useEffect, useCallback } from 'react';
+import bcrypt from 'bcryptjs';
+import { commentService } from '../services';
+import { COMMENT_FORM_DEFAULTS, COMMENT_MESSAGES } from '../constants';
+import { validateName, validatePassword, validateCommentContent, checkRateLimit } from '../utils';
 
 export function useComments(postId) {
   const [comments, setComments] = useState([]);
@@ -28,7 +23,7 @@ export function useComments(postId) {
     if (result.success) {
       setComments(result.data);
     } else {
-      console.error("댓글 로딩 오류:", result.error);
+      console.error('댓글 로딩 오류:', result.error);
     }
 
     setLoading(false);
@@ -54,18 +49,14 @@ export function useComments(postId) {
       e.preventDefault();
 
       // 1. Rate Limiting 체크
-      const rateLimitResult = checkRateLimit("COMMENT");
+      const rateLimitResult = checkRateLimit('COMMENT');
       if (!rateLimitResult.allowed) {
         alert(rateLimitResult.error);
         return;
       }
 
       // 2. 필수 입력 체크
-      if (
-        !formData.author_name ||
-        !formData.author_password ||
-        !formData.content
-      ) {
+      if (!formData.author_name || !formData.author_password || !formData.content) {
         alert(COMMENT_MESSAGES.REQUIRED_FIELDS);
         return;
       }
@@ -150,13 +141,13 @@ export function useComments(postId) {
         if (result.success) {
           alert(COMMENT_MESSAGES.DELETE_SUCCESS);
           setShowDeleteInput({ ...showDeleteInput, [commentId]: false });
-          setDeletePassword({ ...deletePassword, [commentId]: "" });
+          setDeletePassword({ ...deletePassword, [commentId]: '' });
           fetchComments();
         } else {
           alert(result.error);
         }
       } catch (error) {
-        console.error("댓글 삭제 오류:", error);
+        console.error('댓글 삭제 오류:', error);
         alert(COMMENT_MESSAGES.DELETE_ERROR);
       }
     },

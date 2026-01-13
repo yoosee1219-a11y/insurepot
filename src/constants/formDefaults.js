@@ -3,13 +3,13 @@
  * 폼 초기화 시 사용되는 기본값을 한 곳에서 관리
  */
 
-import { DEFAULT_CATEGORY, DEFAULT_INSURANCE_TYPE } from "./insurance";
+import { DEFAULT_CATEGORY, DEFAULT_INSURANCE_TYPE } from './insurance';
 
 // 게시글 폼 초기값
 export const POST_FORM_DEFAULTS = {
-  title: "",
+  title: '',
   category: DEFAULT_CATEGORY,
-  content: "",
+  content: '',
   is_published: false,
   view_count: 0,
   is_featured: false,
@@ -17,22 +17,22 @@ export const POST_FORM_DEFAULTS = {
 
 // 상담 문의 폼 초기값
 export const CONSULTATION_FORM_DEFAULTS = {
-  name: "",
-  phone: "",
-  email: "",
+  name: '',
+  phone: '',
+  email: '',
   insurance_type: DEFAULT_INSURANCE_TYPE,
-  message: "",
+  message: '',
 };
 
 // 댓글 폼 초기값
 export const COMMENT_FORM_DEFAULTS = {
-  author_name: "",
-  author_password: "",
-  content: "",
+  author_name: '',
+  author_password: '',
+  content: '',
 };
 
 // 로그인 폼 초기값
 export const LOGIN_FORM_DEFAULTS = {
-  username: "",
-  password: "",
+  username: '',
+  password: '',
 };
