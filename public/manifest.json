@@ -1,6 +1,6 @@
 {
-  "short_name": "보험이지",
-  "name": "보험이지 - 보험 비교 플랫폼",
+  "short_name": "보이지",
+  "name": "보이지 - 보험 비교 & 쿠폰 혜택",
   "icons": [
     {
       "src": "favicon.ico",
@@ -20,6 +20,7 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#6c5ce7",
+  "background_color": "#ffffff",
+  "description": "보험 전문 컨설팅 & 자동차 정비 쿠폰 혜택"
 }
